@@ -1,0 +1,76 @@
+{
+    "TranslationProperties": {
+        "Name": "server.items.Circuit_Wire_Block.name",
+        "Description": "server.items.Circuit_Wire_Block.description"
+    },
+    "MaxStack": 50,
+    "Icon": "Icons/Items/Circuit/Circuit_Wire_Block.png",
+    "Categories": [
+        "Blocks.Circuit"
+    ],
+    "PlayerAnimationsId": "Block",
+    "Recipe": {
+        "TimeSeconds": 0,
+        "OutputQuantity": 4,
+        "Input": [
+            {
+                "ItemId": "Rock_Stone_Cobble",
+                "Quantity": 4
+            },
+            {
+                "ItemId": "Ingredient_Bar_Copper",
+                "Quantity": 1
+            }
+        ],
+        "BenchRequirement": [
+            {
+                "Type": "Crafting",
+                "Id": "Engineer_Workbench",
+                "Categories": [
+                    "Misc"
+                ],
+                "RequiredTierLevel": 1
+            }
+        ]
+    },
+    "BlockType": {
+        "Material": "Solid",
+        "DrawType": "Cube",
+        "Textures": [
+            {
+                "All": "BlockTextures/Circuit/Circuit_Wire_Block.png",
+                "Weight": 1
+            }
+        ],
+        "Flags": {
+            "IsUsable": false
+        },
+        "Gathering": {
+            "Soft": {}
+        },
+        "BlockParticleSetId": "Stone",
+        "BlockSoundSetId": "Metal",
+        "State": {
+            "Definitions": {
+                "Off": {
+                    "Model": "Block/Cube",
+                    "Textures": [
+                        {
+                            "All": "BlockTextures/Circuit/Circuit_Wire_Block.png",
+                            "Weight": 1
+                        }
+                    ]
+                },
+                "On": {
+                    "Model": "Block/Cube",
+                    "Textures": [
+                        {
+                            "All": "BlockTextures/Circuit/Circuit_Wire_Block_On.png",
+                            "Weight": 1
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,94 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Circuit_Sticky_Piston.name"
+  },
+  "MaxStack": 50,
+  "Icon": "Icons/Items/Circuit/Circuit_Pusher_Sticky_Piston.png",
+  "Categories": [
+    "Blocks.Circuit"
+  ],
+  "PlayerAnimationsId": "Block",
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "CustomModel": "Blocks/Circuit/sticky_piston.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "BlockTextures/Circuit/Circuit_Sticky_Piston.png",
+        "Weight": 1
+      }
+    ],
+    "Flags": {
+      "IsUsable": false
+    },
+    "Gathering": {
+      "Soft": {}
+    },
+    "BlockParticleSetId": "Stone",
+    "Textures": [
+      {
+        "All": "BlockTextures/Circuit/Circuit_Sticky_Piston.png",
+        "Weight": 1
+      }
+    ],
+    "BlockSoundSetId": "Stone",
+    "VariantRotation": "NESW",
+    "State": {
+      "Definitions": {
+        "Extended": {
+          "CustomModel": "Blocks/Circuit/piston_base_extended.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "BlockTextures/Circuit/Circuit_Sticky_Piston.png",
+              "Weight": 1
+            }
+          ],
+          "Textures": [
+            {
+              "All": "BlockTextures/Circuit/Circuit_Sticky_Piston.png",
+              "Weight": 1
+            }
+          ]
+        },
+        "Default": {
+          "Textures": [
+            {
+              "All": "BlockTextures/Circuit/Circuit_Sticky_Piston.png",
+              "Weight": 1
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Tags": {
+    "Type": [
+      "Circuit"
+    ]
+  },
+  "Recipe": {
+    "TimeSeconds": 0,
+    "OutputQuantity": 1,
+    "Input": [
+      {
+        "ItemId": "Circuit_Pusher_Piston",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Fibre",
+        "Quantity": 4
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "Engineer_Workbench",
+        "Categories": [
+          "Circuit"
+        ],
+        "RequiredTierLevel": 1
+      }
+    ]
+  },
+  "ItemSoundSetId": "ISS_Items_Metal"
+}

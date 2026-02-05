@@ -1,0 +1,79 @@
+{
+    "TranslationProperties": {
+        "Name": "server.items.Circuit_Light_Sensor.name",
+        "Description": "server.items.Circuit_Light_Sensor.description"
+    },
+    "MaxStack": 50,
+    "Icon": "Icons/Items/Circuit/Circuit_Light_Sensor.png",
+    "Categories": [
+        "Blocks.Circuit"
+    ],
+    "PlayerAnimationsId": "Block",
+    "BlockType": {
+        "Material": "Solid",
+        "DrawType": "Model",
+        "CustomModel": "Blocks/Circuit/Circuit_Light_Sensor.blockymodel",
+        "CustomModelTexture": [
+            {
+                "Texture": "BlockTextures/Circuit/Circuit_Light_Sensor.png",
+                "Weight": 1
+            }
+        ],
+               "Gathering": {
+            "Soft": {}
+        },
+        "BlockSoundSetId": "Stone",
+        "State": {
+            "Definitions": {
+                "On": {
+                    "CustomModel": "Blocks/Circuit/Circuit_Light_Sensor.blockymodel",
+                    "CustomModelTexture": [
+                        {
+                            "Texture": "BlockTextures/Circuit/Circuit_Light_Sensor_On.png",
+                            "Weight": 1
+                        }
+                    ]
+                },
+                "Off": {
+                    "CustomModel": "Blocks/Circuit/Circuit_Light_Sensor.blockymodel",
+                    "CustomModelTexture": [
+                        {
+                            "Texture": "BlockTextures/Circuit/Circuit_Light_Sensor.png",
+                            "Weight": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "Tags": {
+        "Type": [
+            "Circuit"
+        ]
+    },
+    "Recipe": {
+        "TimeSeconds": 0,
+        "OutputQuantity": 1,
+        "Input": [
+            {
+                "ItemId": "Ingredient_Void_Essence",
+                "Quantity": 1
+            },
+            {
+                "ItemId": "Rock_Stone_Cobble",
+                "Quantity": 2
+            }
+        ],
+        "BenchRequirement": [
+            {
+                "Type": "Crafting",
+                "Id": "Engineer_Workbench",
+                "Categories": [
+                    "Circuit"
+                ],
+                "RequiredTierLevel": 2
+            }
+        ]
+    },
+    "ItemSoundSetId": "ISS_Items_Metal"
+}

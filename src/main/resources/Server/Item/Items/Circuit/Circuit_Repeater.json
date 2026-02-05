@@ -1,0 +1,288 @@
+{
+    "TranslationProperties": {
+        "Name": "server.items.Circuit_Repeater.name"
+    },
+    "MaxStack": 50,
+    "Icon": "Icons/Items/Circuit/Circuit_Repeater.png",
+    "Categories": [
+        "Blocks.Circuit"
+    ],
+    "PlayerAnimationsId": "Block",
+    "BlockType": {
+        "Material": "Solid",
+        "DrawType": "Model",
+        "CustomModel": "Blocks/Circuit/Circuit_Repeater.blockymodel",
+        "CustomModelTexture": [
+            {
+                "Texture": "BlockTextures/Circuit/Circuit_Repeater_Atlas.png",
+                "Weight": 1
+            }
+        ],
+        "Flags": {
+            "IsUsable": true
+        },
+        "VariantRotation": "UpDownNESW",
+        "Gathering": {
+            "Soft": {}
+        },
+        "BlockParticleSetId": "Stone",
+        "BlockSoundSetId": "Stone",
+        "Interactions": {
+            "Use": {
+                "Interactions": [
+                    {
+                        "Type": "ChangeState",
+                        "Changes": {
+                            "default": "Off_1",
+                            "Off_0": "Off_1"
+                        }
+                    }
+                ]
+            }
+        },
+        "State": {
+            "Definitions": {
+                "Off_0": {
+                    "InteractionHint": "Delay: 0 Ticks",
+                    "CustomModelTexture": [
+                        {
+                            "Texture": "BlockTextures/Circuit/Circuit_Repeater_Atlas.png",
+                            "Weight": 1
+                        }
+                    ],
+                    "Interactions": {
+                        "Use": {
+                            "Interactions": [
+                                {
+                                    "Type": "ChangeState",
+                                    "Changes": {
+                                        "Off_0": "Off_1"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "Off_1": {
+                    "InteractionHint": "Delay: 1 Tick",
+                    "CustomModelTexture": [
+                        {
+                            "Texture": "BlockTextures/Circuit/Circuit_Repeater_Atlas_1.png",
+                            "Weight": 1
+                        }
+                    ],
+                    "Interactions": {
+                        "Use": {
+                            "Interactions": [
+                                {
+                                    "Type": "ChangeState",
+                                    "Changes": {
+                                        "Off_1": "Off_2"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "Off_2": {
+                    "InteractionHint": "Delay: 2 Ticks",
+                    "CustomModelTexture": [
+                        {
+                            "Texture": "BlockTextures/Circuit/Circuit_Repeater_Atlas_2.png",
+                            "Weight": 1
+                        }
+                    ],
+                    "Interactions": {
+                        "Use": {
+                            "Interactions": [
+                                {
+                                    "Type": "ChangeState",
+                                    "Changes": {
+                                        "Off_2": "Off_3"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "Off_3": {
+                    "InteractionHint": "Delay: 3 Ticks",
+                    "CustomModelTexture": [
+                        {
+                            "Texture": "BlockTextures/Circuit/Circuit_Repeater_Atlas_3.png",
+                            "Weight": 1
+                        }
+                    ],
+                    "Interactions": {
+                        "Use": {
+                            "Interactions": [
+                                {
+                                    "Type": "ChangeState",
+                                    "Changes": {
+                                        "Off_3": "Off_4"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "Off_4": {
+                    "InteractionHint": "Delay: 4 Ticks",
+                    "CustomModelTexture": [
+                        {
+                            "Texture": "BlockTextures/Circuit/Circuit_Repeater_Atlas_4.png",
+                            "Weight": 1
+                        }
+                    ],
+                    "Interactions": {
+                        "Use": {
+                            "Interactions": [
+                                {
+                                    "Type": "ChangeState",
+                                    "Changes": {
+                                        "Off_4": "Off_0"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "On_0": {
+                    "InteractionHint": "Delay: 0 Ticks",
+                    "CustomModelTexture": [
+                        {
+                            "Texture": "BlockTextures/Circuit/Circuit_Repeater_Atlas.png",
+                            "Weight": 1
+                        }
+                    ],
+                    "Interactions": {
+                        "Use": {
+                            "Interactions": [
+                                {
+                                    "Type": "ChangeState",
+                                    "Changes": {
+                                        "On_0": "On_1"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "On_1": {
+                    "InteractionHint": "Delay: 1 Tick",
+                    "CustomModelTexture": [
+                        {
+                            "Texture": "BlockTextures/Circuit/Circuit_Repeater_Atlas_1.png",
+                            "Weight": 1
+                        }
+                    ],
+                    "Interactions": {
+                        "Use": {
+                            "Interactions": [
+                                {
+                                    "Type": "ChangeState",
+                                    "Changes": {
+                                        "On_1": "On_2"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "On_2": {
+                    "InteractionHint": "Delay: 2 Ticks",
+                    "CustomModelTexture": [
+                        {
+                            "Texture": "BlockTextures/Circuit/Circuit_Repeater_Atlas_2.png",
+                            "Weight": 1
+                        }
+                    ],
+                    "Interactions": {
+                        "Use": {
+                            "Interactions": [
+                                {
+                                    "Type": "ChangeState",
+                                    "Changes": {
+                                        "On_2": "On_3"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "On_3": {
+                    "InteractionHint": "Delay: 3 Ticks",
+                    "CustomModelTexture": [
+                        {
+                            "Texture": "BlockTextures/Circuit/Circuit_Repeater_Atlas_3.png",
+                            "Weight": 1
+                        }
+                    ],
+                    "Interactions": {
+                        "Use": {
+                            "Interactions": [
+                                {
+                                    "Type": "ChangeState",
+                                    "Changes": {
+                                        "On_3": "On_4"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "On_4": {
+                    "InteractionHint": "Delay: 4 Ticks",
+                    "CustomModelTexture": [
+                        {
+                            "Texture": "BlockTextures/Circuit/Circuit_Repeater_Atlas_4.png",
+                            "Weight": 1
+                        }
+                    ],
+                    "Interactions": {
+                        "Use": {
+                            "Interactions": [
+                                {
+                                    "Type": "ChangeState",
+                                    "Changes": {
+                                        "On_4": "On_0"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "Tags": {
+        "Type": [
+            "Circuit"
+        ]
+    },
+    "Recipe": {
+        "TimeSeconds": 0,
+        "OutputQuantity": 1,
+        "Input": [
+            {
+                "ItemId": "Ingredient_Bar_Copper",
+                "Quantity": 2
+            },
+            {
+                "ItemId": "Rock_Stone_Cobble",
+                "Quantity": 2
+            }
+        ],
+        "BenchRequirement": [
+            {
+                "Type": "Crafting",
+                "Id": "Engineer_Workbench",
+                "Categories": [
+                    "Circuit"
+                ],
+                "RequiredTierLevel": 1
+            }
+        ]
+    },
+    "ItemSoundSetId": "ISS_Items_Metal"
+}

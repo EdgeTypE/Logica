@@ -1,0 +1,769 @@
+{
+  "nodes": [
+    {
+      "id": "1",
+      "name": "WireCenter",
+      "position": {
+        "x": 0,
+        "y": 16,
+        "z": 0
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "isPiece": false,
+          "size": {
+            "x": 10,
+            "y": 10,
+            "z": 10
+          },
+          "visible": true
+        },
+        "textureLayout": {
+          "back": {
+            "offset": {
+              "x": 0,
+              "y": 0
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 0,
+              "y": 10
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "front": {
+            "offset": {
+              "x": 10,
+              "y": 0
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 10,
+              "y": 10
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 10,
+              "y": 30
+            },
+            "mirror": {
+              "x": true,
+              "y": true
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 30,
+              "y": 0
+            },
+            "mirror": {
+              "x": true,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "flat"
+      }
+    },
+    {
+      "id": "2",
+      "name": "WireNorth",
+      "position": {
+        "x": 0,
+        "y": 16,
+        "z": -11
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "isPiece": false,
+          "size": {
+            "x": 6,
+            "y": 6,
+            "z": 11
+          },
+          "visible": false
+        },
+        "textureLayout": {
+          "back": {
+            "offset": {
+              "x": 42,
+              "y": 40
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 10,
+              "y": 20
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "front": {
+            "offset": {
+              "x": 44,
+              "y": 18
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 20,
+              "y": 10
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 27,
+              "y": 27
+            },
+            "mirror": {
+              "x": true,
+              "y": true
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 16,
+              "y": 26
+            },
+            "mirror": {
+              "x": true,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": false,
+        "doubleSided": false,
+        "shadingMode": "flat"
+      }
+    },
+    {
+      "id": "3",
+      "name": "WireSouth",
+      "position": {
+        "x": 0,
+        "y": 16,
+        "z": 11
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "isPiece": false,
+          "size": {
+            "x": 6,
+            "y": 6,
+            "z": 11
+          },
+          "visible": true
+        },
+        "textureLayout": {
+          "back": {
+            "offset": {
+              "x": 42,
+              "y": 46
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 16,
+              "y": 27
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "front": {
+            "offset": {
+              "x": 48,
+              "y": 0
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 27,
+              "y": 16
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 33,
+              "y": 33
+            },
+            "mirror": {
+              "x": true,
+              "y": true
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 6,
+              "y": 30
+            },
+            "mirror": {
+              "x": true,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "flat"
+      }
+    },
+    {
+      "id": "4",
+      "name": "WireEast",
+      "position": {
+        "x": 11,
+        "y": 16,
+        "z": 0
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "isPiece": false,
+          "size": {
+            "x": 11,
+            "y": 6,
+            "z": 6
+          },
+          "visible": false
+        },
+        "textureLayout": {
+          "back": {
+            "offset": {
+              "x": 30,
+              "y": 0
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 6,
+              "y": 48
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "front": {
+            "offset": {
+              "x": 31,
+              "y": 6
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 48,
+              "y": 6
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 27,
+              "y": 39
+            },
+            "mirror": {
+              "x": true,
+              "y": true
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 44,
+              "y": 22
+            },
+            "mirror": {
+              "x": true,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": false,
+        "doubleSided": false,
+        "shadingMode": "flat"
+      }
+    },
+    {
+      "id": "5",
+      "name": "WireWest",
+      "position": {
+        "x": -11,
+        "y": 16,
+        "z": 0
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "isPiece": false,
+          "size": {
+            "x": 11,
+            "y": 6,
+            "z": 6
+          },
+          "visible": false
+        },
+        "textureLayout": {
+          "back": {
+            "offset": {
+              "x": 27,
+              "y": 33
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 48,
+              "y": 40
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "front": {
+            "offset": {
+              "x": 38,
+              "y": 12
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 48,
+              "y": 46
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 49,
+              "y": 34
+            },
+            "mirror": {
+              "x": true,
+              "y": true
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 49,
+              "y": 34
+            },
+            "mirror": {
+              "x": true,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": false,
+        "doubleSided": false,
+        "shadingMode": "flat"
+      }
+    },
+    {
+      "id": "6",
+      "name": "WireUp",
+      "position": {
+        "x": 0,
+        "y": 27,
+        "z": 0
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "isPiece": false,
+          "size": {
+            "x": 6,
+            "y": 11,
+            "z": 6
+          },
+          "visible": false
+        },
+        "textureLayout": {
+          "back": {
+            "offset": {
+              "x": 6,
+              "y": 37
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 12,
+              "y": 39
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "front": {
+            "offset": {
+              "x": 18,
+              "y": 39
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 24,
+              "y": 39
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 55,
+              "y": 18
+            },
+            "mirror": {
+              "x": true,
+              "y": true
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 55,
+              "y": 24
+            },
+            "mirror": {
+              "x": true,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": false,
+        "doubleSided": false,
+        "shadingMode": "flat"
+      }
+    },
+    {
+      "id": "7",
+      "name": "WireDown",
+      "position": {
+        "x": 0,
+        "y": 5,
+        "z": 0
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "shape": {
+        "type": "box",
+        "offset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "stretch": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "settings": {
+          "isPiece": false,
+          "size": {
+            "x": 6,
+            "y": 11,
+            "z": 6
+          },
+          "visible": true
+        },
+        "textureLayout": {
+          "back": {
+            "offset": {
+              "x": 30,
+              "y": 39
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "right": {
+            "offset": {
+              "x": 36,
+              "y": 40
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "front": {
+            "offset": {
+              "x": 0,
+              "y": 41
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "left": {
+            "offset": {
+              "x": 42,
+              "y": 0
+            },
+            "mirror": {
+              "x": false,
+              "y": false
+            },
+            "angle": 0
+          },
+          "top": {
+            "offset": {
+              "x": 55,
+              "y": 36
+            },
+            "mirror": {
+              "x": true,
+              "y": true
+            },
+            "angle": 0
+          },
+          "bottom": {
+            "offset": {
+              "x": 18,
+              "y": 50
+            },
+            "mirror": {
+              "x": true,
+              "y": false
+            },
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "flat"
+      }
+    }
+  ],
+  "format": "prop",
+  "lod": "auto"
+}

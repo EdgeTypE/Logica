@@ -1,0 +1,91 @@
+items.Circuit_Wire.name = Bakır Kablo
+items.Circuit_Wire.description = Devre sinyallerini iletmek için temel bir kablo.
+
+items.Circuit_Golden_Wire.name = Altın Kablo
+items.Circuit_Golden_Wire.description = Devre sinyallerini anında ileten altın kablo.
+
+items.Circuit_Button.name = Düğme
+items.Circuit_Button.description = Basıldığında kısa bir devre darbesi yayan düğme.
+
+items.Circuit_Lever.name = Kol
+items.Circuit_Lever.description = Devre gücünü açıp kapatan kol.
+
+items.Circuit_Lamp.name = Lamba
+items.Circuit_Lamp.description = Devre ile güç verildiğinde yanan lamba.
+
+items.Circuit_Repeater.name = Tekrarlayıcı
+items.Circuit_Repeater.description = Devre sinyallerini geciktiren ve güçlendiren tekrarlayıcı.
+
+items.Circuit_Obname = Gözlemci
+items.Circuit_Obdescription = Blok değişikliklerini algıladığında darbe yayan gözlemci.
+
+items.Circuit_Hopper.name = Huni
+items.Circuit_Hopper.description = Kaplar arasında eşya aktaran huni.
+
+items.Circuit_Pipe.name = Boru
+items.Circuit_Pipe.description = Eşya taşımak için kullanılan boru.
+
+items.Circuit_Vacuum_Pipe.name = Vakum Boru
+items.Circuit_Vacuum_Pipe.description = Yakındaki bloklardan eşya çeken vakum boru.
+
+items.Circuit_Pressure_Plate.name = Basınç Plakası
+items.Circuit_Pressure_Plate.description = Üzerine basıldığında aktive olan basınç plakası.
+
+items.Circuit_Light_Sensor.name = Işık Algılayıcı
+items.Circuit_Light_Sensor.description = Işık seviyesini algılar ve belirli bir seviyeye ulaştığında bir devre sinyali yayar.
+
+items.interactionHints.turnoff = Kapat
+items.interactionHints.turnon = Aç
+items.interactionHints.use = Kullan
+items.interactionHints.open = Aç
+
+# Mantık Kapıları
+items.Circuit_Gate_AND.name = VE Kapısı
+items.Circuit_Gate_AND.description = Tüm girişler güçlendirildiğinde güç veren mantık kapısı.
+
+items.Circuit_Gate_OR.name = VEYA Kapısı
+items.Circuit_Gate_OR.description = Herhangi bir giriş güçlendirildiğinde güç veren mantık kapısı.
+
+items.Circuit_Gate_NOT.name = DEĞİL Kapısı
+items.Circuit_Gate_NOT.description = Giriş sinyalini tersine çeviren mantık kapısı.
+
+items.Circuit_Gate_NOT_On.name = DEĞİL Kapısı (Açık)
+items.Circuit_Gate_NOT_On.description = Aktif durumda olan DEĞİL kapısı.
+
+items.Circuit_Gate_NAND.name = VE DEĞİL Kapısı
+items.Circuit_Gate_NAND.description = Tüm girişler güçlendirilmedikçe güç veren mantık kapısı.
+
+items.Circuit_Gate_NOR.name = VEYA DEĞİL Kapısı
+items.Circuit_Gate_NOR.description = Hiçbir giriş güçlendirilmediğinde güç veren mantık kapısı.
+
+items.Circuit_Gate_XOR.name = XOR Kapısı
+items.Circuit_Gate_XOR.description = Girişler farklı olduğunda güç veren mantık kapısı.
+
+items.Circuit_Gate_XNOR.name = XNOR Kapısı
+items.Circuit_Gate_XNOR.description = Girişler aynı olduğunda güç veren mantık kapısı.
+
+items.Circuit_Gate_Buffer.name = Tampon Kapısı
+items.Circuit_Gate_Buffer.description = Giriş sinyalini ileten mantık kapısı.
+
+# Pistonlar
+items.Circuit_Pusher_Piston.name = Piston
+items.Circuit_Pusher_Piston.description = Güç verildiğinde blokları iten piston.
+
+items.Circuit_Pusher_Piston_Extended.name = Uzatılmış Piston
+items.Circuit_Pusher_Piston_Extended.description = Uzatılmış durumda olan piston.
+
+items.Circuit_Sticky_Piston.name = Yapışkan Piston
+items.Circuit_Sticky_Piston.description = Güç verildiğinde blokları itip çeken yapışkan piston.
+
+items.Circuit_Sticky_Piston_Extended.name = Uzatılmış Yapışkan Piston
+items.Circuit_Sticky_Piston_Extended.description = Uzatılmış durumda olan yapışkan piston.
+
+items.Circuit_Piston_Head.name = Piston Başı
+items.Circuit_Piston_Head.description = Pistonun başı.
+
+# Mobilya
+items.Engineer_Workbench.name = Mühendis Tezgahı
+items.Engineer_Workbench.description = Devre bileşenlerini üretmek için tezgah.
+
+items.Furniture_Crude_Chest_Small.name = Küçük İlkel Sandık
+items.Furniture_Crude_Chest_Small.description = Eşya depolamak için küçük sandık.

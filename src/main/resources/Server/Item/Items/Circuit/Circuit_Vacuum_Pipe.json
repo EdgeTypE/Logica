@@ -1,0 +1,61 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Circuit_Vacuum_Pipe.name"
+  },
+  "MaxStack": 50,
+  "Icon": "Icons/Items/Circuit/Circuit_Vacuum_Pipe.png",
+  "Categories": [
+    "Blocks.Circuit"
+  ],
+  "PlayerAnimationsId": "Block",
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Circuit/Circuit_Vacuum_Pipe.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Weight": 1,
+        "Texture": "BlockTextures/Circuit/Circuit_Vacuum_Pipe_Atlas.png"
+      }
+    ],
+    "Flags": {
+      "IsUsable": true
+    },
+    "Gathering": {
+      "Soft": {}
+    },
+    "BlockParticleSetId": "Stone",
+    "BlockSoundSetId": "Metal"
+  },
+  "Tags": {
+    "Type": [
+      "Circuit"
+    ]
+  },
+  "Recipe": {
+    "TimeSeconds": 0,
+    "OutputQuantity": 1,
+    "Input": [
+      {
+        "ItemId": "Circuit_Pipe",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Void_Essence",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "Engineer_Workbench",
+        "Categories": [
+          "Circuit"
+        ],
+        "RequiredTierLevel": 2
+      }
+    ]
+  },
+  "ItemSoundSetId": "ISS_Items_Metal"
+}

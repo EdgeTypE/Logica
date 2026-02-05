@@ -1,0 +1,42 @@
+HytaleServer.jar
+/docs
+# --- Gradle Build System ---
+.gradle/
+build/
+out/
+
+# gradle/wrapper/gradle-wrapper.jar
+
+# --- Java ---
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+
+logs/
+*.log
+
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.venv/
+
+.idea/
+*.iml
+*.iws
+*.ipr
+
+.classpath
+.project
+.settings/
+bin/
+
+.vscode/
+
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini

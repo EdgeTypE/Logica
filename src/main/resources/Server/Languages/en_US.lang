@@ -1,0 +1,93 @@
+# CircuitMod - English (US) Language File
+# This file contains all translations for the Circuit Mod
+
+# Circuit Items
+server.items.Circuit_Wire.name = Wire
+server.items.Circuit_Wire.description = A basic wire for conducting circuit signals.
+
+server.items.Circuit_Wire_Block.name = Wire Block
+server.items.Circuit_Wire_Block.description = A wire in full block form. Acts like a normal wire.
+
+server.items.activator_block.name = Activator Block
+server.items.activator_block.description = An activator block that can be toggled on and off.
+
+server.items.Circuit_Golden_Wire.name = Golden Wire
+server.items.Circuit_Golden_Wire.description = A golden wire that instantly transmits circuit signals.
+
+server.items.Circuit_Button.name = Button
+server.items.Circuit_Button.description = A button that emits a short circuit pulse when pressed.
+
+server.items.Circuit_Lever.name = Lever
+server.items.Circuit_Lever.description = A lever that toggles circuit power on and off.
+
+server.items.Circuit_Lamp.name = Lamp
+server.items.Circuit_Lamp.description = A lamp that lights up when powered by a circuit.
+
+server.items.Circuit_Repeater.name = Repeater
+server.items.Circuit_Repeater.description = A repeater that delays and strengthens circuit signals.
+
+server.items.Circuit_Observer.name = Observer
+server.items.Circuit_Observer.description = An observer that emits a pulse when detecting block changes.
+
+server.items.Circuit_Hopper.name = Hopper
+server.items.Circuit_Hopper.description = A hopper that transfers items between containers.
+
+server.items.Circuit_Pipe.name = Pipe
+server.items.Circuit_Pipe.description = A pipe for transporting items.
+
+server.items.Circuit_Vacuum_Pipe.name = Vacuum Pipe
+server.items.Circuit_Vacuum_Pipe.description = A vacuum pipe that pulls items from nearby blocks.
+
+server.items.Circuit_Pressure_Plate.name = Pressure Plate
+server.items.Circuit_Pressure_Plate.description = A pressure plate that activates when stepped on.
+
+# Logic Gates
+server.items.Circuit_Gate_AND.name = AND Gate
+server.items.Circuit_Gate_AND.description = A logic gate that outputs power only when all inputs are powered.
+
+server.items.Circuit_Gate_OR.name = OR Gate
+server.items.Circuit_Gate_OR.description = A logic gate that outputs power when any input is powered.
+
+server.items.Circuit_Gate_NOT.name = NOT Gate
+server.items.Circuit_Gate_NOT.description = A logic gate that inverts the input signal.
+
+server.items.Circuit_Gate_NOT_On.name = NOT Gate (On)
+server.items.Circuit_Gate_NOT_On.description = A NOT gate in its active state.
+
+server.items.Circuit_Gate_NAND.name = NAND Gate
+server.items.Circuit_Gate_NAND.description = A logic gate that outputs power unless all inputs are powered.
+
+server.items.Circuit_Gate_NOR.name = NOR Gate
+server.items.Circuit_Gate_NOR.description = A logic gate that outputs power only when no inputs are powered.
+
+server.items.Circuit_Gate_XOR.name = XOR Gate
+server.items.Circuit_Gate_XOR.description = A logic gate that outputs power when inputs differ.
+
+server.items.Circuit_Gate_XNOR.name = XNOR Gate
+server.items.Circuit_Gate_XNOR.description = A logic gate that outputs power when inputs are the same.
+
+server.items.Circuit_Gate_Buffer.name = Buffer Gate
+server.items.Circuit_Gate_Buffer.description = A logic gate that passes through the input signal.
+
+# Pistons
+server.items.Circuit_Pusher_Piston.name = Piston
+server.items.Circuit_Pusher_Piston.description = A piston that pushes blocks when powered.
+
+server.items.Circuit_Pusher_Piston_Extended.name = Extended Piston
+server.items.Circuit_Pusher_Piston_Extended.description = A piston in its extended state.
+
+server.items.Circuit_Sticky_Piston.name = Sticky Piston
+server.items.Circuit_Sticky_Piston.description = A piston that pushes and pulls blocks when powered.
+
+server.items.Circuit_Sticky_Piston_Extended.name = Extended Sticky Piston
+server.items.Circuit_Sticky_Piston_Extended.description = A sticky piston in its extended state.
+
+server.items.Circuit_Piston_Head.name = Piston Head
+server.items.Circuit_Piston_Head.description = The head of a piston.
+
+# Furniture
+server.items.Engineer_Workbench.name = Engineer Workbench
+server.items.Engineer_Workbench.description = A workbench for crafting circuit components.
+
+server.items.Furniture_Crude_Chest_Small.name = Small Crude Chest
+server.items.Furniture_Crude_Chest_Small.description = A small chest for storing items.

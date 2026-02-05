@@ -1,0 +1,148 @@
+{
+    "TranslationProperties": {
+        "Name": "server.items.Engineer_Workbench.name",
+        "Description": "server.items.Engineer_Workbench.description"
+    },
+    "Icon": "Icons/Items/Circuit/Bench_Engineer.png",
+    "Categories": [
+        "Furniture.Benches"
+    ],
+    "BlockType": {
+        "Material": "Solid",
+        "DrawType": "Model",
+        "Opacity": "Transparent",
+        "CustomModel": "Blocks/Circuit/Workbench.blockymodel",
+        "CustomModelTexture": [
+            {
+                "Texture": "BlockTextures/Circuit/Workbench_Texture.png",
+                "Weight": 1
+            }
+        ],
+        "HitboxType": "Bench_Farming",
+        "VariantRotation": "NESW",
+        "Flags": {
+            "IsUsable": true
+        },
+        "Bench": {
+            "Type": "Crafting",
+            "Categories": [
+                {
+                    "Id": "Circuit",
+                    "Icon": "Icons/CraftingCategories/Farming/Farming.png",
+                    "Name": "Circuit"
+                },
+                {
+                    "Id": "Triggers",
+                    "Icon": "Icons/CraftingCategories/Farming/Farming.png",
+                    "Name": "Triggers"
+                },
+                {
+                    "Id": "Misc",
+                    "Icon": "Icons/CraftingCategories/Farming/Farming.png",
+                    "Name": "Miscellaneous"
+                }
+            ],
+            "LocalOpenSoundEventId": "SFX_Workbench_Open",
+            "LocalCloseSoundEventId": "SFX_Workbench_Close",
+            "CompletedSoundEventId": "SFX_Workbench_Craft",
+            "FailedSoundEventId": "SFX_Generic_Crafting_Failed",
+            "BenchUpgradeSoundEventId": "SFX_Workbench_Upgrade_Start_Default",
+            "BenchUpgradeCompletedSoundEventId": "SFX_Workbench_Upgrade_Complete_Default",
+            "Id": "Engineer_Workbench",
+            "TierLevels": [
+                {
+                    "CraftingTimeReductionModifier": 0.0,
+                    "UpgradeRequirement": {
+                        "Material": [
+                            {
+                                "ItemId": "Circuit_Wire",
+                                "Quantity": 10
+                            },
+                            {
+                                "ItemId": "Ingredient_Bar_Gold",
+                                "Quantity": 10
+                            }
+                        ],
+                        "TimeSeconds": 1
+                    }
+                }
+            ]
+        },
+        "State": {
+            "Id": "crafting",
+            "Definitions": {
+                "CraftCompleted": {},
+                "Tier1": {
+                    "CustomModel": "Blocks/Circuit/Workbench.blockymodel"
+                },
+                "Tier2": {
+                    "CustomModel": "Blocks/Circuit/Workbench.blockymodel"
+                },
+                "Tier3": {
+                    "CustomModel": "Blocks/Circuit/Workbench.blockymodel"
+                },
+                "Tier4": {
+                    "CustomModel": "Blocks/Circuit/Workbench.blockymodel"
+                }
+            }
+        },
+        "Gathering": {
+            "Breaking": {
+                "GatherType": "Benches"
+            }
+        },
+        "BlockParticleSetId": "Wood",
+        "ParticleColor": "#815c39",
+        "Support": {
+            "Down": [
+                {
+                    "FaceType": "Full"
+                }
+            ]
+        },
+        "BlockSoundSetId": "Wood"
+    },
+    "PlayerAnimationsId": "Block",
+    "IconProperties": {
+        "Scale": 0.35,
+        "Translation": [
+            11.4,
+            -19.8
+        ],
+        "Rotation": [
+            22.5,
+            45,
+            22.5
+        ]
+    },
+    "Tags": {
+        "Type": [
+            "Bench"
+        ]
+    },
+    "Recipe": {
+        "TimeSeconds": 3,
+        "Input": [
+            {
+                "ItemId": "Ingredient_Bar_Copper",
+                "Quantity": 5
+            },
+            {
+                "ItemId": "Ingredient_Fibre",
+                "Quantity": 20
+            }
+        ],
+        "BenchRequirement": [
+            {
+                "Type": "Crafting",
+                "Id": "Workbench",
+                "Categories": [
+                    "Workbench_Crafting"
+                ]
+            }
+        ]
+    },
+    "MaxStack": 1,
+    "ItemLevel": 4,
+    "ItemSoundSetId": "ISS_Blocks_Wood"
+}

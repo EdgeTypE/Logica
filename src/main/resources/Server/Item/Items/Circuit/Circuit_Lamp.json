@@ -1,0 +1,96 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Circuit_Lamp.name"
+  },
+  "MaxStack": 50,
+  "Icon": "Icons/Items/Circuit/Circuit_Lamp.png",
+  "Categories": [
+    "Blocks.Circuit"
+  ],
+  "PlayerAnimationsId": "Block",
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Cube",
+    "Flags": {
+      "IsUsable": true
+    },
+    "Gathering": {
+      "Soft": {}
+    },
+    "BlockParticleSetId": "Stone",
+    "Textures": [
+      {
+        "All": "BlockTextures/Circuit/Circuit_Lamp.png",
+        "Weight": 1
+      }
+    ],
+    "BlockSoundSetId": "Stone",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "ChangeState",
+            "Changes": {
+              "default": "On",
+              "On": "Off",
+              "Off": "On"
+            }
+          }
+        ]
+      }
+    },
+    "State": {
+      "Definitions": {
+        "On": {
+          "Textures": [
+            {
+              "All": "BlockTextures/Circuit/Circuit_Lamp_On.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Radius": 15,
+            "Color": "#ffffff"
+          },
+          "InteractionHint": "server.items.interactionHints.turnoff"
+        },
+        "Off": {
+          "Textures": [
+            {
+              "All": "BlockTextures/Circuit/Circuit_Lamp.png",
+              "Weight": 1
+            }
+          ],
+          "InteractionHint": "server.items.interactionHints.turnon"
+        }
+      }
+    },
+    "InteractionHint": "server.items.interactionHints.turnon"
+  },
+  "Tags": {
+    "Type": [
+      "Circuit"
+    ]
+  },
+  "Recipe": {
+    "TimeSeconds": 0,
+    "OutputQuantity": 1,
+    "Input": [
+      {
+        "ItemId": "Deco_Lantern",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "Engineer_Workbench",
+        "Categories": [
+          "Misc"
+        ],
+        "RequiredTierLevel": 2
+      }
+    ]
+  },
+  "ItemSoundSetId": "ISS_Items_Metal"
+}

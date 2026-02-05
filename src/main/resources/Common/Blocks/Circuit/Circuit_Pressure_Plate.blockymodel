@@ -1,0 +1,57 @@
+{
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Plate",
+      "position": {"x": 0, "y": 0.94122, "z": 0},
+      "orientation": {"x": 0, "y": 0.70711, "z": 0, "w": 0.70711},
+      "shape": {
+        "type": "box",
+        "offset": {"x": 0, "y": 0, "z": 0},
+        "stretch": {"x": 1.08, "y": 0.59726, "z": 1.08},
+        "settings": {
+          "isPiece": false,
+          "size": {"x": 30, "y": 3, "z": 30}
+        },
+        "textureLayout": {
+          "back": {
+            "offset": {"x": 0, "y": 30},
+            "mirror": {"x": false, "y": true},
+            "angle": 0
+          },
+          "right": {
+            "offset": {"x": 0, "y": 30},
+            "mirror": {"x": false, "y": true},
+            "angle": 0
+          },
+          "front": {
+            "offset": {"x": 0, "y": 30},
+            "mirror": {"x": false, "y": true},
+            "angle": 0
+          },
+          "left": {
+            "offset": {"x": 0, "y": 30},
+            "mirror": {"x": false, "y": true},
+            "angle": 0
+          },
+          "top": {
+            "offset": {"x": 60, "y": 0},
+            "mirror": {"x": true, "y": true},
+            "angle": 270
+          },
+          "bottom": {
+            "offset": {"x": 0, "y": 0},
+            "mirror": {"x": false, "y": false},
+            "angle": 0
+          }
+        },
+        "unwrapMode": "custom",
+        "visible": true,
+        "doubleSided": false,
+        "shadingMode": "standard"
+      }
+    }
+  ],
+  "format": "prop",
+  "lod": "auto"
+}

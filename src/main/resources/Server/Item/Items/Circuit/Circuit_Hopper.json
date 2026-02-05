@@ -1,0 +1,38 @@
+{
+    "TranslationProperties": {
+        "Name": "server.items.Circuit_Hopper.name"
+    },
+    "MaxStack": 50,
+    "Icon": "Icons/Items/Circuit/Circuit_Hopper.png",
+    "Categories": [
+        "Blocks.Circuit"
+    ],
+    "Interactions": {
+        "Secondary": "Block_Secondary"
+    },
+    "PlayerAnimationsId": "Block",
+    "BlockType": {
+        "Material": "Solid",
+        "DrawType": "Cube",
+        "Flags": {
+            "IsUsable": true
+        },
+        "Gathering": {
+            "Soft": {}
+        },
+        "BlockParticleSetId": "Metal",
+        "Textures": [
+            {
+                "All": "BlockTextures/Circuit/Circuit_Hopper.png",
+                "Weight": 1
+            }
+        ],
+        "BlockSoundSetId": "Metal"
+    },
+    "Tags": {
+        "Type": [
+            "Circuit"
+        ]
+    },
+    "ItemSoundSetId": "ISS_Items_Metal"
+}

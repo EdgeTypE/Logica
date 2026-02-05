@@ -1,0 +1,43 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Circuit_Sticky_Piston_Extended.name"
+  },
+  "MaxStack": 50,
+  "Icon": "Icons/Items/Circuit/Circuit_Pusher_Sticky_Piston.png",
+  "Categories": [
+    "Blocks.Circuit"
+  ],
+  "PlayerAnimationsId": "Block",
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "CustomModel": "Blocks/Circuit/piston_base_extended.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "BlockTextures/Circuit/Circuit_Sticky_Piston.png",
+        "Weight": 1
+      }
+    ],
+    "Flags": {
+      "IsUsable": false
+    },
+    "Gathering": {
+      "Soft": {}
+    },
+    "BlockParticleSetId": "Stone",
+    "Textures": [
+      {
+        "All": "BlockTextures/Circuit/Circuit_Sticky_Piston.png",
+        "Weight": 1
+      }
+    ],
+    "BlockSoundSetId": "Stone",
+    "VariantRotation": "NESW"
+  },
+  "Tags": {
+    "Type": [
+      "Circuit"
+    ]
+  },
+  "ItemSoundSetId": "ISS_Items_Metal"
+}

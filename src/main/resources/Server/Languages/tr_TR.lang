@@ -1,0 +1,90 @@
+# CircuitMod - Türkçe Dil Dosyası
+# Bu dosya Circuit Mod için tüm çevirileri içerir
+
+# Devre Öğeleri
+server.items.Circuit_Wire.name = Kablo
+server.items.Circuit_Wire.description = Devre sinyallerini iletmek için temel bir kablo.
+
+server.items.Circuit_Wire_Block.name = Blok Kablo
+server.items.Circuit_Wire_Block.description = Tam blok formunda bir kablo. Normal kablo gibi davranır.
+
+server.items.Circuit_Golden_Wire.name = Altın Kablo
+server.items.Circuit_Golden_Wire.description = Devre sinyallerini anında ileten altın kablo.
+
+server.items.Circuit_Button.name = Düğme
+server.items.Circuit_Button.description = Basıldığında kısa bir devre darbesi yayan düğme.
+
+server.items.Circuit_Lever.name = Kol
+server.items.Circuit_Lever.description = Devre gücünü açıp kapatan kol.
+
+server.items.Circuit_Lamp.name = Lamba
+server.items.Circuit_Lamp.description = Devre ile güç verildiğinde yanan lamba.
+
+server.items.Circuit_Repeater.name = Tekrarlayıcı
+server.items.Circuit_Repeater.description = Devre sinyallerini geciktiren ve güçlendiren tekrarlayıcı.
+
+server.items.Circuit_Observer.name = Gözlemci
+server.items.Circuit_Observer.description = Blok değişikliklerini algıladığında darbe yayan gözlemci.
+
+server.items.Circuit_Hopper.name = Huni
+server.items.Circuit_Hopper.description = Kaplar arasında eşya aktaran huni.
+
+server.items.Circuit_Pipe.name = Boru
+server.items.Circuit_Pipe.description = Eşya taşımak için kullanılan boru.
+
+server.items.Circuit_Vacuum_Pipe.name = Vakum Boru
+server.items.Circuit_Vacuum_Pipe.description = Yakındaki bloklardan eşya çeken vakum boru.
+
+server.items.Circuit_Pressure_Plate.name = Basınç Plakası
+server.items.Circuit_Pressure_Plate.description = Üzerine basıldığında aktive olan basınç plakası.
+
+# Mantık Kapıları
+server.items.Circuit_Gate_AND.name = VE Kapısı
+server.items.Circuit_Gate_AND.description = Tüm girişler güçlendirildiğinde güç veren mantık kapısı.
+
+server.items.Circuit_Gate_OR.name = VEYA Kapısı
+server.items.Circuit_Gate_OR.description = Herhangi bir giriş güçlendirildiğinde güç veren mantık kapısı.
+
+server.items.Circuit_Gate_NOT.name = DEĞİL Kapısı
+server.items.Circuit_Gate_NOT.description = Giriş sinyalini tersine çeviren mantık kapısı.
+
+server.items.Circuit_Gate_NOT_On.name = DEĞİL Kapısı (Açık)
+server.items.Circuit_Gate_NOT_On.description = Aktif durumda olan DEĞİL kapısı.
+
+server.items.Circuit_Gate_NAND.name = VE DEĞİL Kapısı
+server.items.Circuit_Gate_NAND.description = Tüm girişler güçlendirilmedikçe güç veren mantık kapısı.
+
+server.items.Circuit_Gate_NOR.name = VEYA DEĞİL Kapısı
+server.items.Circuit_Gate_NOR.description = Hiçbir giriş güçlendirilmediğinde güç veren mantık kapısı.
+
+server.items.Circuit_Gate_XOR.name = XOR Kapısı
+server.items.Circuit_Gate_XOR.description = Girişler farklı olduğunda güç veren mantık kapısı.
+
+server.items.Circuit_Gate_XNOR.name = XNOR Kapısı
+server.items.Circuit_Gate_XNOR.description = Girişler aynı olduğunda güç veren mantık kapısı.
+
+server.items.Circuit_Gate_Buffer.name = Tampon Kapısı
+server.items.Circuit_Gate_Buffer.description = Giriş sinyalini ileten mantık kapısı.
+
+# Pistonlar
+server.items.Circuit_Pusher_Piston.name = Piston
+server.items.Circuit_Pusher_Piston.description = Güç verildiğinde blokları iten piston.
+
+server.items.Circuit_Pusher_Piston_Extended.name = Uzatılmış Piston
+server.items.Circuit_Pusher_Piston_Extended.description = Uzatılmış durumda olan piston.
+
+server.items.Circuit_Sticky_Piston.name = Yapışkan Piston
+server.items.Circuit_Sticky_Piston.description = Güç verildiğinde blokları itip çeken yapışkan piston.
+
+server.items.Circuit_Sticky_Piston_Extended.name = Uzatılmış Yapışkan Piston
+server.items.Circuit_Sticky_Piston_Extended.description = Uzatılmış durumda olan yapışkan piston.
+
+server.items.Circuit_Piston_Head.name = Piston Başı
+server.items.Circuit_Piston_Head.description = Pistonun başı.
+
+# Mobilya
+server.items.Engineer_Workbench.name = Mühendis Tezgahı
+server.items.Engineer_Workbench.description = Devre bileşenlerini üretmek için tezgah.
+
+server.items.Furniture_Crude_Chest_Small.name = Küçük İlkel Sandık
+server.items.Furniture_Crude_Chest_Small.description = Eşya depolamak için küçük sandık.

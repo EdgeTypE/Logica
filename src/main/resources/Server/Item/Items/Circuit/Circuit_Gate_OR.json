@@ -1,0 +1,33 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Circuit_Gate_OR.name"
+  },
+  "MaxStack": 50,
+  "Icon": "Icons/Items/Circuit/Circuit_Gate_OR.png",
+  "Categories": [
+    "Blocks.Circuit"
+  ],
+  "PlayerAnimationsId": "Block",
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Cube",
+    "Flags": {},
+    "Gathering": {
+      "Soft": {}
+    },
+    "BlockParticleSetId": "Stone",
+    "Textures": [
+      {
+        "All": "BlockTextures/Circuit/Circuit_Gate.png",
+        "Weight": 1
+      }
+    ],
+    "BlockSoundSetId": "Stone"
+  },
+  "Tags": {
+    "Type": [
+      "Circuit"
+    ]
+  },
+  "ItemSoundSetId": "ISS_Items_Metal"
+}

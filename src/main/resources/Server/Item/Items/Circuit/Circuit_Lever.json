@@ -1,0 +1,117 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Circuit_Lever.name"
+  },
+  "MaxStack": 50,
+  "Icon": "Icons/Items/Circuit/Circuit_Lever.png",
+  "Categories": [
+    "Blocks.Circuit"
+  ],
+  "PlayerAnimationsId": "Block",
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Tinkering/Lever.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Tinkering/Lever_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Plant_Large",
+    "VariantRotation": "NESW",
+    "Flags": {
+      "IsUsable": true
+    },
+    "Gathering": {
+      "Soft": {}
+    },
+    "BlockParticleSetId": "Stone",
+    "BlockSoundSetId": "Metal",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "ChangeState",
+            "Changes": {
+              "default": "On",
+              "On": "Off",
+              "Off": "On"
+            }
+          }
+        ]
+      }
+    },
+    "State": {
+      "Definitions": {
+        "On": {
+          "InteractionHint": "server.items.interactionHints.turnoff",
+          "CustomModel": "Blocks/Circuit/Circuit_Lever_Active.blockymodel",
+          "Interactions": {
+            "Use": {
+              "Interactions": [
+                {
+                  "Type": "ChangeState",
+                  "Changes": {
+                    "On": "Off"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "Off": {
+          "InteractionHint": "server.items.interactionHints.turnon",
+          "Interactions": {
+            "Use": {
+              "Interactions": [
+                {
+                  "Type": "ChangeState",
+                  "Changes": {
+                    "default": "On",
+                    "Off": "On"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "Tags": {
+    "Type": [
+      "Circuit"
+    ]
+  },
+  "Recipe": {
+    "TimeSeconds": 0,
+    "OutputQuantity": 1,
+    "Input": [
+      {
+        "ItemId": "Ingredient_Fibre",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Stick",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Rock_Stone_Cobble",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "Engineer_Workbench",
+        "Categories": [
+          "Triggers"
+        ],
+        "RequiredTierLevel": 1
+      }
+    ]
+  },
+  "ItemSoundSetId": "ISS_Items_Metal"
+}

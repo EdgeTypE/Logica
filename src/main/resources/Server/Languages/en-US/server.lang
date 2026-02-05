@@ -1,0 +1,101 @@
+items.Circuit_Wire.name = Copper Wire
+items.Circuit_Wire.description = A basic wire for conducting circuit signals.
+
+items.Circuit_Golden_Wire.name = Golden Wire
+items.Circuit_Golden_Wire.description = A golden wire that instantly transmits circuit signals.
+
+items.Circuit_Button.name = Button
+items.Circuit_Button.description = A button that emits a short circuit pulse when pressed.
+
+items.Circuit_Lever.name = Lever
+items.Circuit_Lever.description = A lever that toggles circuit power on and off.
+
+items.Circuit_Lamp.name = Lamp
+items.Circuit_Lamp.description = A lamp that lights up when powered by a circuit.
+
+server.items.Circuit_Observer.name = Observer
+server.items.Circuit_Observer.description = An observer that detects block updates and emits a pulse.
+
+items.Circuit_Wire_Block.name = Wire Block
+items.Circuit_Wire_Block.description = A wire in full block form. Acts like a normal wire.
+
+items.activator_block.name = Activator Block
+items.activator_block.description = An activator block that can be toggled on and off.
+
+items.Circuit_Light_Sensor.name = Light Sensor
+items.Circuit_Light_Sensor.description = Detects light levels and emits a pulse when above threshold.
+
+
+items.Circuit_Repeater.name = Repeater
+items.Circuit_Repeater.description = A repeater that delays and strengthens circuit signals.
+
+items.Circuit_Obname = Observer
+items.Circuit_Obdescription = An observer that emits a pulse when detecting block changes.
+
+items.Circuit_Hopper.name = Hopper
+items.Circuit_Hopper.description = A hopper that transfers items between containers.
+
+items.Circuit_Pipe.name = Pipe
+items.Circuit_Pipe.description = A pipe for transporting items.
+
+items.Circuit_Vacuum_Pipe.name = Vacuum Pipe
+items.Circuit_Vacuum_Pipe.description = A vacuum pipe that pulls items from nearby blocks.
+
+items.Circuit_Pressure_Plate.name = Pressure Plate
+items.Circuit_Pressure_Plate.description = A pressure plate that activates when stepped on.
+
+items.interactionHints.turnoff = Turn Off
+items.interactionHints.turnon = Turn On
+items.interactionHints.use = Use
+items.interactionHints.open = Open
+
+# Logic Gates
+items.Circuit_Gate_AND.name = AND Gate
+items.Circuit_Gate_AND.description = A logic gate that outputs power only when all inputs are powered.
+
+items.Circuit_Gate_OR.name = OR Gate
+items.Circuit_Gate_OR.description = A logic gate that outputs power when any input is powered.
+
+items.Circuit_Gate_NOT.name = NOT Gate
+items.Circuit_Gate_NOT.description = A logic gate that inverts the input signal.
+
+items.Circuit_Gate_NOT_On.name = NOT Gate (On)
+items.Circuit_Gate_NOT_On.description = A NOT gate in its active state.
+
+items.Circuit_Gate_NAND.name = NAND Gate
+items.Circuit_Gate_NAND.description = A logic gate that outputs power unless all inputs are powered.
+
+items.Circuit_Gate_NOR.name = NOR Gate
+items.Circuit_Gate_NOR.description = A logic gate that outputs power only when no inputs are powered.
+
+items.Circuit_Gate_XOR.name = XOR Gate
+items.Circuit_Gate_XOR.description = A logic gate that outputs power when inputs differ.
+
+items.Circuit_Gate_XNOR.name = XNOR Gate
+items.Circuit_Gate_XNOR.description = A logic gate that outputs power when inputs are the same.
+
+items.Circuit_Gate_Buffer.name = Buffer Gate
+items.Circuit_Gate_Buffer.description = A logic gate that passes through the input signal.
+
+# Pistons
+items.Circuit_Pusher_Piston.name = Piston
+items.Circuit_Pusher_Piston.description = A piston that pushes blocks when powered.
+
+items.Circuit_Pusher_Piston_Extended.name = Extended Piston
+items.Circuit_Pusher_Piston_Extended.description = A piston in its extended state.
+
+items.Circuit_Sticky_Piston.name = Sticky Piston
+items.Circuit_Sticky_Piston.description = A piston that pushes and pulls blocks when powered.
+
+items.Circuit_Sticky_Piston_Extended.name = Extended Sticky Piston
+items.Circuit_Sticky_Piston_Extended.description = A sticky piston in its extended state.
+
+items.Circuit_Piston_Head.name = Piston Head
+items.Circuit_Piston_Head.description = The head of a piston.
+
+# Furniture
+items.Engineer_Workbench.name = Engineer's Workbench
+items.Engineer_Workbench.description = A workbench for crafting circuit components.
+
+items.Furniture_Crude_Chest_Small.name = Small Crude Chest
+items.Furniture_Crude_Chest_Small.description = A small chest for storing items.

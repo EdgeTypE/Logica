@@ -1,0 +1,123 @@
+{
+    "TranslationProperties": {
+        "Name": "server.items.Circuit_Button.name"
+    },
+    "MaxStack": 50,
+    "Icon": "Icons/Items/Circuit/Circuit_Button.png",
+    "Categories": [
+        "Blocks.Circuit"
+    ],
+    "Interactions": {
+        "Primary": "Block_Primary",
+        "Secondary": "Block_Secondary"
+    },
+    "BlockType": {
+        "Material": "Solid",
+        "DrawType": "Model",
+        "Opacity": "Transparent",
+        "CustomModel": "Blocks/Circuit/button.blockymodel",
+        "CustomModelTexture": [
+            {
+                "Weight": 1,
+                "Texture": "Blocks/Decorative_Sets/Crude/Shelf_Texture.png"
+            }
+        ],
+        "CustomModelScale": 0.5,
+        "VariantRotation": "NESW",
+        "Flags": {
+            "IsUsable": true
+        },
+        "Gathering": {
+            "Soft": {}
+        },
+        "BlockParticleSetId": "Stone",
+        "BlockSoundSetId": "Metal",
+        "Support": {
+            "East": [
+                {
+                    "FaceType": "Full"
+                }
+            ],
+            "North": [
+                {
+                    "FaceType": "Full"
+                }
+            ],
+            "West": [
+                {
+                    "FaceType": "Full"
+                }
+            ]
+        },
+        "Supporting": {
+            "Up": [
+                {
+                    "FaceType": "Full"
+                }
+            ]
+        },
+        "Interactions": {
+            "Use": {
+                "Interactions": [
+                    {
+                        "Type": "ChangeState",
+                        "Changes": {
+                            "default": "Unpressed",
+                            "Unpressed": "Pressed",
+                            "Pressed": "Pressed"
+                        }
+                    }
+                ]
+            }
+        },
+        "State": {
+            "Definitions": {
+                "Pressed": {
+                    "InteractionHint": "server.items.interactionHints.use",
+                    "Textures": [
+                        {
+                            "All": "BlockTextures/Circuit/Circuit_Button_Pressed.png",
+                            "Weight": 1
+                        }
+                    ]
+                },
+                "Unpressed": {
+                    "InteractionHint": "server.items.interactionHints.use",
+                    "Textures": [
+                        {
+                            "All": "BlockTextures/Circuit/Circuit_Button.png",
+                            "Weight": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "PlayerAnimationsId": "Block",
+    "Tags": {
+        "Type": [
+            "Circuit"
+        ]
+    },
+    "Recipe": {
+        "TimeSeconds": 0,
+        "OutputQuantity": 1,
+        "Input": [
+            {
+                "Quantity": 1,
+                "ResourceTypeId": "Wood_All"
+            }
+        ],
+        "BenchRequirement": [
+            {
+                "Type": "Crafting",
+                "Id": "Engineer_Workbench",
+                "Categories": [
+                    "Triggers"
+                ],
+                "RequiredTierLevel": 1
+            }
+        ]
+    },
+    "ItemSoundSetId": "ISS_Items_Metal"
+}

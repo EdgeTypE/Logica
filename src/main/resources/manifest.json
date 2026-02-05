@@ -1,0 +1,22 @@
+{
+    "Group": "EdgeTypE",
+    "Name": "Logica",
+    "Version": "0.1.1",
+    "Description": "A Redstone alternative for Hytale designed to bring automation and logic systems.",
+    "Authors": [
+        {
+            "Name": "EdgeTypE"
+        }
+    ],
+    "Website": "goygoyengine.com",
+    "ServerVersion": "*",
+    "Dependencies": {
+        
+    },
+    "OptionalDependencies": {
+        
+    },
+    "DisabledByDefault": false,
+    "Main": "com.circuit.CircuitPlugin",
+    "IncludesAssetPack": true
+}

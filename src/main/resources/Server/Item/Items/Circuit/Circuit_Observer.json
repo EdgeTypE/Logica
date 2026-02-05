@@ -1,0 +1,64 @@
+{
+    "TranslationProperties": {
+        "Name": "server.items.Circuit_Observer.name",
+        "Description": "server.items.Circuit_Observer.description"
+    },
+    "MaxStack": 50,
+    "Icon": "Icons/Items/Circuit/Circuit_Observer.png",
+    "Categories": [
+        "Blocks.Circuit"
+    ],
+    "PlayerAnimationsId": "Block",
+    "BlockType": {
+        "Material": "Solid",
+        "DrawType": "Model",
+        "CustomModel": "Blocks/Circuit/Circuit_Observer.blockymodel",
+        "CustomModelTexture": [
+            {
+                "Texture": "BlockTextures/Circuit/Circuit_Observer_Atlas.png",
+                "Weight": 1
+            }
+        ],
+        "Flags": {},
+        "VariantRotation": "UpDownNESW",
+        "Gathering": {
+            "Soft": {}
+        },
+        "BlockParticleSetId": "Stone",
+        "BlockSoundSetId": "Stone"
+    },
+    "Tags": {
+        "Type": [
+            "Circuit"
+        ]
+    },
+    "Recipe": {
+        "TimeSeconds": 0,
+        "OutputQuantity": 1,
+        "Input": [
+            {
+                "ItemId": "Ingredient_Void_Essence",
+                "Quantity": 1
+            },
+            {
+                "ItemId": "Plant_Crop_Carrot_Item",
+                "Quantity": 1
+            },
+            {
+                "ItemId": "Rock_Stone_Cobble",
+                "Quantity": 2
+            }
+        ],
+        "BenchRequirement": [
+            {
+                "Type": "Crafting",
+                "Id": "Engineer_Workbench",
+                "Categories": [
+                    "Circuit"
+                ],
+                "RequiredTierLevel": 2
+            }
+        ]
+    },
+    "ItemSoundSetId": "ISS_Items_Metal"
+}

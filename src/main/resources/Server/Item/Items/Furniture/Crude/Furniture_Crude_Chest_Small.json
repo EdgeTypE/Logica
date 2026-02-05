@@ -1,0 +1,123 @@
+{
+    "TranslationProperties": {
+        "Name": "server.items.Furniture_Crude_Chest_Small.name"
+    },
+    "PlayerAnimationsId": "Block",
+    "Categories": [
+        "Furniture.Containers"
+    ],
+    "Set": "Furniture_Crude",
+    "Icon": "Icons/ItemsGenerated/Furniture_Crude_Chest_Small.png",
+    "Recipe": {
+        "TimeSeconds": 1,
+        "Input": [
+            {
+                "ResourceTypeId": "Wood_All",
+                "Quantity": 10
+            }
+        ],
+        "BenchRequirement": [
+            {
+                "Id": "Fieldcraft",
+                "Type": "Crafting",
+                "Categories": [
+                    "Tools"
+                ]
+            },
+            {
+                "Id": "Workbench",
+                "Type": "Crafting",
+                "Categories": [
+                    "Workbench_Survival"
+                ]
+            }
+        ]
+    },
+    "BlockType": {
+        "BlockParticleSetId": "Wood",
+        "BlockSoundSetId": "Wood",
+        "CustomModel": "Blocks/Decorative_Sets/Crude/Chest_Small.blockymodel",
+        "CustomModelTexture": [
+            {
+                "Texture": "Blocks/Decorative_Sets/Crude/Chest_Small_Texture.png",
+                "Weight": 1
+            }
+        ],
+        "DrawType": "Model",
+        "Flags": {
+            "IsUsable": true
+        },
+        "Gathering": {
+            "Breaking": {
+                "GatherType": "Woods"
+            }
+        },
+        "Material": "Solid",
+        "Opacity": "Transparent",
+        "ParticleColor": "#63412c",
+        "ConnectedBlockRuleSet": {
+            "Type": "CustomTemplate",
+            "TemplateShapeAssetId": "ChestConnectedBlockTemplate",
+            "TemplateShapeBlockPatterns": {
+                "Default": "Furniture_Crude_Chest_Small",
+                "Double": "Furniture_Crude_Chest_Large"
+            }
+        },
+        "State": {
+            "Id": "container",
+            "Capacity": 18,
+            "Definitions": {
+                "CloseWindow": {
+                    "InteractionSoundEventId": "SFX_Chest_Wooden_Close",
+                    "CustomModelAnimation": "Blocks/Animations/Chest/Chest_Close.blockyanim"
+                },
+                "OpenWindow": {
+                    "InteractionSoundEventId": "SFX_Chest_Wooden_Open",
+                    "CustomModelAnimation": "Blocks/Animations/Chest/Chest_Open.blockyanim"
+                }
+            }
+        },
+        "Supporting": {
+            "Up": [
+                {
+                    "FaceType": "Full"
+                }
+            ]
+        },
+        "VariantRotation": "NESW",
+        "Interactions": {
+            "Primary": "Break_Container",
+            "Use": "Open_Container"
+        }
+    },
+    "ResourceTypes": [
+        {
+            "Id": "Fuel"
+        },
+        {
+            "Id": "Charcoal"
+        }
+    ],
+    "Tags": {
+        "Type": [
+            "Furniture"
+        ],
+        "Family": [
+            "Crude"
+        ]
+    },
+    "IconProperties": {
+        "Scale": 0.55,
+        "Translation": [
+            0,
+            -15
+        ],
+        "Rotation": [
+            22.5,
+            45,
+            22.5
+        ]
+    },
+    "ItemSoundSetId": "ISS_Blocks_Wood",
+    "MaxStack": 10
+}

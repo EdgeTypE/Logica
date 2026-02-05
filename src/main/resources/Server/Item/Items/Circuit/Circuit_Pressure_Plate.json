@@ -1,0 +1,119 @@
+{
+    "TranslationProperties": {
+        "Name": "server.items.Circuit_Pressure_Plate.name"
+    },
+    "MaxStack": 50,
+    "Icon": "Icons/Items/Circuit/Circuit_Pressure_Plate.png",
+    "Categories": [
+        "Blocks.Circuit"
+    ],
+    "Interactions": {
+        "Primary": "Block_Primary",
+        "Secondary": "Block_Secondary"
+    },
+    "BlockType": {
+        "Material": "Solid",
+        "BlockSoundSetId": "Stone",
+        "DrawType": "Model",
+        "Opacity": "Transparent",
+        "CustomModel": "Blocks/Circuit/Circuit_Pressure_Plate.blockymodel",
+        "CustomModelTexture": [
+            {
+                "Texture": "BlockTextures/Circuit/Circuit_Pressure_Plate.png",
+                "Weight": 1
+            }
+        ],
+        "CustomModelScale": 1,
+        "HitboxType": "Water_Lily",
+        "IsTrigger": true,
+        "Flags": {
+            "IsUsable": true
+        },
+        "Gathering": {
+            "Soft": {}
+        },
+        "BlockParticleSetId": "Stone",
+        "Support": {
+            "Down": [
+                {
+                    "FaceType": "Full"
+                }
+            ]
+        },
+        "Interactions": {
+            "Use": {
+                "Interactions": [
+                    {
+                        "Type": "ChangeState",
+                        "Changes": {
+                            "default": "Unpressed",
+                            "Unpressed": "Pressed",
+                            "Pressed": "Pressed"
+                        }
+                    }
+                ]
+            }
+        },
+        "State": {
+            "Definitions": {
+                "Pressed": {
+                    "InteractionHint": "server.items.interactionHints.use",
+                    "CustomModelTexture": [
+                        {
+                            "Texture": "BlockTextures/Circuit/Circuit_Pressure_Plate_Pressed.png",
+                            "Weight": 1
+                        }
+                    ]
+                },
+                "Unpressed": {
+                    "InteractionHint": "server.items.interactionHints.use",
+                    "CustomModelTexture": [
+                        {
+                            "Texture": "BlockTextures/Circuit/Circuit_Pressure_Plate.png",
+                            "Weight": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "PlayerAnimationsId": "Item",
+    "IconProperties": {
+        "Scale": 0.39,
+        "Translation": [
+            0,
+            -13.5
+        ],
+        "Rotation": [
+            22.5,
+            45,
+            22.5
+        ]
+    },
+    "Tags": {
+        "Type": [
+            "Circuit"
+        ]
+    },
+    "Recipe": {
+        "TimeSeconds": 0,
+        "OutputQuantity": 1,
+        "Input": [
+            {
+                "Quantity": 1,
+                "ResourceTypeId": "Wood_All"
+            }
+        ],
+        "BenchRequirement": [
+            {
+                "Type": "Crafting",
+                "Id": "Engineer_Workbench",
+                "Categories": [
+                    "Triggers"
+                ],
+                "RequiredTierLevel": 1
+            }
+        ]
+    },
+    "ItemSoundSetId": "ISS_Blocks_Stone"
+}
