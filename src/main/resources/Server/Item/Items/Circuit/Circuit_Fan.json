@@ -1,0 +1,74 @@
+{
+    "TranslationProperties": {
+        "Name": "Fan"
+    },
+    "MaxStack": 50,
+    "Icon": "Icons/Items/Circuit/Circuit_Fan.png",
+    "Categories": [
+        "Blocks.Circuit"
+    ],
+    "PlayerAnimationsId": "Block",
+    "BlockType": {
+        "Material": "Solid",
+        "DrawType": "Model",
+        "Opacity": "Transparent",
+        "CustomModel": "Blocks/Circuit/Circuit_Fan.blockymodel",
+        "CustomModelAnimation": "Blocks/Circuit/fanAnim.blockyanim",
+        "CustomModelTexture": [
+            {
+                "Weight": 1,
+                "Texture": "BlockTextures/Circuit/Circuit_Fan.png"
+            }
+        ],
+        "Flags": {
+            "IsUsable": true
+        },
+        "Gathering": {
+            "Soft": {}
+        },
+        "BlockParticleSetId": "Stone",
+        "BlockSoundSetId": "Metal",
+        "VariantRotation": "UpDownNESW",
+        "State": {
+            "Id": "circuit_fan_state",
+            "Definitions": {
+                "RunningA": {
+                    "CustomModelAnimation": "Blocks/Circuit/fanAnim.blockyanim"
+                },
+                "RunningB": {
+                    "CustomModelAnimation": "Blocks/Circuit/fanAnim.blockyanim"
+                }
+            }
+        }
+    },
+    "Tags": {
+        "Type": [
+            "Circuit"
+        ]
+    },
+    "Recipe": {
+        "TimeSeconds": 0,
+        "OutputQuantity": 1,
+        "Input": [
+            {
+                "ItemId": "Circuit_Pipe",
+                "Quantity": 1
+            },
+            {
+                "ItemId": "Ingredient_Iron_Ingot",
+                "Quantity": 4
+            }
+        ],
+        "BenchRequirement": [
+            {
+                "Type": "Crafting",
+                "Id": "Engineer_Workbench",
+                "Categories": [
+                    "Circuit"
+                ],
+                "RequiredTierLevel": 2
+            }
+        ]
+    },
+    "ItemSoundSetId": "ISS_Items_Metal"
+}

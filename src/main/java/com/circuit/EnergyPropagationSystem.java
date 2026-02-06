@@ -66,21 +66,21 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
         Set<Vector3i> toProcess = new HashSet<>();
         collectNetwork(startPos, toProcess, new HashSet<>(), 64); // Max 64 blocks deep
 
-        // Special handling for Light Sensors: also include adjacent non-wire blocks (lamps, pistons, etc.)
+        // Special handling for Light Sensors: also include adjacent non-wire blocks
+        // (lamps, pistons, etc.)
         LightSensorSystem lightSensorSystem = plugin.getLightSensorSystem();
         if (lightSensorSystem != null && lightSensorSystem.isSensorAt(startPos)) {
             // Add adjacent blocks to processing list so they get updated too
             for (int[] offset : NEIGHBOR_OFFSETS) {
                 Vector3i adjacentPos = new Vector3i(
-                    startPos.getX() + offset[0],
-                    startPos.getY() + offset[1], 
-                    startPos.getZ() + offset[2]
-                );
-                
+                        startPos.getX() + offset[0],
+                        startPos.getY() + offset[1],
+                        startPos.getZ() + offset[2]);
+
                 BlockResult adjacentInfo = getBlockInfo(adjacentPos);
-                if (adjacentInfo.type == BlockTypeEnum.LAMP || 
-                    adjacentInfo.type == BlockTypeEnum.GATE ||
-                    adjacentInfo.type == BlockTypeEnum.REPEATER) {
+                if (adjacentInfo.type == BlockTypeEnum.LAMP ||
+                        adjacentInfo.type == BlockTypeEnum.GATE ||
+                        adjacentInfo.type == BlockTypeEnum.REPEATER) {
                     toProcess.add(adjacentPos);
                 }
             }
@@ -125,17 +125,19 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
 
         if (blockInfo.type == BlockTypeEnum.WIRE || blockInfo.type == BlockTypeEnum.GOLD_WIRE
                 || blockInfo.type == BlockTypeEnum.LEVER ||
-                blockInfo.type == BlockTypeEnum.BUTTON || blockInfo.type == BlockTypeEnum.LAMP ||
+                blockInfo.type == BlockTypeEnum.BUTTON || blockInfo.type == BlockTypeEnum.LAMP
+                || blockInfo.type == BlockTypeEnum.FAN ||
                 blockInfo.type == BlockTypeEnum.REPEATER || blockInfo.type == BlockTypeEnum.GATE ||
                 blockInfo.type == BlockTypeEnum.LIGHT_SENSOR) {
             collected.add(pos);
 
-            // Recursively collect neighbors (but lamps, repeaters, and gates don't
+            // Recursively collect neighbors (but lamps, fans, repeaters, and gates don't
             // propagate further in this immediate pass)
             // Gates are like repeaters - they are boundaries that need to check their
             // inputs but don't propagate the network collection further
             // Light sensors ARE power sources, so they NEED to propagate to neighbors
-            if (blockInfo.type != BlockTypeEnum.LAMP && blockInfo.type != BlockTypeEnum.REPEATER
+            if (blockInfo.type != BlockTypeEnum.LAMP && blockInfo.type != BlockTypeEnum.FAN
+                    && blockInfo.type != BlockTypeEnum.REPEATER
                     && blockInfo.type != BlockTypeEnum.GATE) {
                 for (int[] offset : NEIGHBOR_OFFSETS) {
                     Vector3i neighbor = new Vector3i(pos.getX() + offset[0], pos.getY() + offset[1],
@@ -186,8 +188,10 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
                 // Debug: Log neighbor power for Light Sensors
                 LightSensorSystem lightSensorSystem = plugin.getLightSensorSystem();
                 if (lightSensorSystem != null && lightSensorSystem.isSensorAt(neighbor)) {
-                    LOGGER.atInfo().log(PREFIX + "[Debug] Lamp at " + pos + " checking Light Sensor neighbor at " + neighbor + 
-                                       " -> power=" + neighborPower + " (sensor powered=" + lightSensorSystem.isSensorPowered(neighbor) + ")");
+                    LOGGER.atInfo()
+                            .log(PREFIX + "[Debug] Lamp at " + pos + " checking Light Sensor neighbor at " + neighbor +
+                                    " -> power=" + neighborPower + " (sensor powered="
+                                    + lightSensorSystem.isSensorPowered(neighbor) + ")");
                 }
 
                 // Also check for strong power through blocks
@@ -209,7 +213,44 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
             if (receivedPower != oldPower) {
                 energyLevels.put(circuitPos, receivedPower);
                 LOGGER.atInfo()
-                .log(PREFIX + "[Debug] Lamp power update at " + pos + ": " + oldPower + " -> " + receivedPower);
+                        .log(PREFIX + "[Debug] Lamp power update at " + pos + ": " + oldPower + " -> " + receivedPower);
+                return true;
+            }
+            return false;
+        }
+
+        if (blockInfo.type == BlockTypeEnum.FAN) {
+            // Fan: Passive consumer - update based on received power
+            int receivedPower = 0;
+
+            // Check all neighbors for power
+            for (int[] offset : NEIGHBOR_OFFSETS) {
+                Vector3i neighbor = new Vector3i(pos.getX() + offset[0], pos.getY() + offset[1],
+                        pos.getZ() + offset[2]);
+
+                int neighborPower = getPowerOutput(neighbor, pos);
+                if (neighborPower > receivedPower) {
+                    receivedPower = neighborPower;
+                }
+
+                // Also check for strong power through blocks
+                int strongPower = getStrongPowerFromBlock(neighbor);
+                if (strongPower > receivedPower) {
+                    receivedPower = strongPower;
+                }
+            }
+
+            // Update fan system
+            FanSystem fanSystem = plugin.getFanSystem();
+            if (fanSystem != null) {
+                fanSystem.setFanPowered(pos, receivedPower);
+            }
+
+            // Store power level for consistency
+            CircuitPos circuitPos = CircuitPos.from(pos);
+            int oldPower = energyLevels.getOrDefault(circuitPos, -1);
+            if (receivedPower != oldPower) {
+                energyLevels.put(circuitPos, receivedPower);
                 return true;
             }
             return false;
@@ -290,7 +331,8 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
             int oldPower = energyLevels.getOrDefault(circuitPos, -1);
             if (power != oldPower) {
                 energyLevels.put(circuitPos, power);
-                LOGGER.atInfo().log(PREFIX + "[Debug] Light Sensor power update at " + pos + ": " + oldPower + " -> " + power);
+                LOGGER.atInfo()
+                        .log(PREFIX + "[Debug] Light Sensor power update at " + pos + ": " + oldPower + " -> " + power);
                 return true;
             }
             return false;
@@ -508,6 +550,12 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
             return lightSensorSystem.getPowerOutput(pos);
         }
 
+        // Check if this is a Fan - PASSIVE CONSUMER
+        FanSystem fanSystem = plugin.getFanSystem();
+        if (fanSystem != null && fanSystem.hasFanAt(pos)) {
+            return 0;
+        }
+
         // Lever or Wire power
         return energyLevels.getOrDefault(CircuitPos.from(pos), 0);
     }
@@ -600,7 +648,7 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
 
     // Helper for Block Identification
     private enum BlockTypeEnum {
-        WIRE, GOLD_WIRE, LEVER, BUTTON, LAMP, REPEATER, GATE, LIGHT_SENSOR, AIR, OTHER
+        WIRE, GOLD_WIRE, LEVER, BUTTON, LAMP, FAN, REPEATER, GATE, LIGHT_SENSOR, AIR, OTHER
     }
 
     private static class BlockResult {
@@ -717,6 +765,10 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
                         return new BlockResult(BlockTypeEnum.LAMP, lit, type);
                     }
 
+                    if (id.contains("Circuit_Fan")) {
+                        return new BlockResult(BlockTypeEnum.FAN, false, type);
+                    }
+
                     if (id.contains("Circuit_Light_Sensor")) {
                         LightSensorSystem lightSensorSystem = plugin.getLightSensorSystem();
                         boolean powered = lightSensorSystem != null && lightSensorSystem.isSensorPowered(pos);
@@ -812,16 +864,27 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
                 return new BlockResult(BlockTypeEnum.LAMP, lit, lampType);
             }
 
+            // Check if it's a fan
+            if (plugin.getFanSystem() != null && plugin.getFanSystem().isFanAt(pos)) {
+                BlockType fanType = type;
+                if (fanType == null || (fanType.getId() != null && !fanType.getId().contains("Circuit_Fan"))) {
+                    fanType = BlockType.getAssetMap().getAsset("Circuit_Fan");
+                }
+                return new BlockResult(BlockTypeEnum.FAN, false, fanType);
+            }
+
             // Check if it's a light sensor
             LightSensorSystem lightSensorSystem = plugin.getLightSensorSystem();
             if (lightSensorSystem != null && lightSensorSystem.isSensorAt(pos)) {
                 BlockType sensorType = type;
-                if (sensorType == null || (sensorType.getId() != null && !sensorType.getId().contains("Circuit_Light_Sensor"))) {
+                if (sensorType == null
+                        || (sensorType.getId() != null && !sensorType.getId().contains("Circuit_Light_Sensor"))) {
                     sensorType = BlockType.getAssetMap().getAsset("Circuit_Light_Sensor");
                 }
 
                 boolean powered = lightSensorSystem.isSensorPowered(pos);
-                // LOGGER.atInfo().log(PREFIX + "[Debug] Registry Override: Identified LIGHT_SENSOR at " + pos);
+                // LOGGER.atInfo().log(PREFIX + "[Debug] Registry Override: Identified
+                // LIGHT_SENSOR at " + pos);
                 return new BlockResult(BlockTypeEnum.LIGHT_SENSOR, powered, sensorType);
             }
 
@@ -864,7 +927,9 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
 
             return new BlockResult(BlockTypeEnum.AIR, false, null);
 
-        } catch (Exception e) {
+        } catch (
+
+        Exception e) {
             return new BlockResult(BlockTypeEnum.AIR, false, null);
         }
     }

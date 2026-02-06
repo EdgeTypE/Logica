@@ -145,6 +145,7 @@ public class WireVisualSystem {
                         id.contains("Circuit_Hopper") ||
                         id.contains("Circuit_Light_Sensor") ||
                         id.contains("Circuit_Pipe") ||
+                        id.contains("Circuit_Fan") ||
                         id.contains("Circuit_Vacuum_Pipe");
 
                 if (match) {

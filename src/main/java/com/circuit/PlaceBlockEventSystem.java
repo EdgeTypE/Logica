@@ -419,6 +419,87 @@ public class PlaceBlockEventSystem extends EntityEventSystem<EntityStore, PlaceB
                     }
 
                     // LOGGER.atInfo().log(PREFIX + "=== VACUUM PIPE PLACEMENT DEBUG END ===");
+                } else if (itemId.contains("Circuit_Fan")) {
+                    // Handle fan placement with rotation based on player facing direction
+                    PipeComponent.Direction outputDirection = PipeComponent.Direction.NORTH; // Default
+
+                    try {
+                        // Get rotation from event
+                        Object rotation = event.getRotation();
+
+                        if (rotation != null) {
+                            // Try to get index via reflection
+                            int rotationIndex = 0;
+                            try {
+                                java.lang.reflect.Method getIndex = rotation.getClass().getMethod("index");
+                                rotationIndex = ((Number) getIndex.invoke(rotation)).intValue();
+                            } catch (Exception e) {
+                                try {
+                                    java.lang.reflect.Method getIndex = rotation.getClass().getMethod("getIndex");
+                                    rotationIndex = ((Number) getIndex.invoke(rotation)).intValue();
+                                } catch (Exception e2) {
+                                    String rotStr = rotation.toString();
+                                    if (rotStr.contains("index=")) {
+                                        String indexPart = rotStr.substring(rotStr.indexOf("index=") + 6);
+                                        indexPart = indexPart.split("[,\\]]")[0].trim();
+                                        rotationIndex = Integer.parseInt(indexPart);
+                                    }
+                                }
+                            }
+
+                            // Check for pitch information for UP/DOWN detection
+                            String rotStr = rotation.toString();
+                            boolean lookingUp = rotStr.contains("pitch=Up") || rotStr.contains("pitch=Ninety");
+                            boolean lookingDown = rotStr.contains("pitch=Down") || rotStr.contains("pitch=MinusNinety");
+
+                            // Convert rotation index to fan output direction
+                            if (lookingUp) {
+                                outputDirection = PipeComponent.Direction.UP;
+                            } else if (lookingDown) {
+                                outputDirection = PipeComponent.Direction.DOWN;
+                            } else if (rotationIndex >= 4) {
+                                switch (rotationIndex) {
+                                    case 4:
+                                        outputDirection = PipeComponent.Direction.UP;
+                                        break;
+                                    case 5:
+                                        outputDirection = PipeComponent.Direction.DOWN;
+                                        break;
+                                    default:
+                                        outputDirection = PipeComponent.Direction.UP;
+                                        break;
+                                }
+                            } else {
+                                switch (rotationIndex % 4) {
+                                    case 0:
+                                        outputDirection = PipeComponent.Direction.SOUTH;
+                                        break;
+                                    case 1:
+                                        outputDirection = PipeComponent.Direction.EAST;
+                                        break;
+                                    case 2:
+                                        outputDirection = PipeComponent.Direction.NORTH;
+                                        break;
+                                    case 3:
+                                        outputDirection = PipeComponent.Direction.WEST;
+                                        break;
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        LOGGER.atWarning()
+                                .log(PREFIX + "[Fan] Could not determine output direction: " + e.getMessage());
+                    }
+
+                    // Create fan component with determined output direction
+                    PipeComponent fanComponent = new PipeComponent();
+                    fanComponent.setOutputDirection(outputDirection);
+
+                    // Register with fan system
+                    plugin.getFanSystem().registerFan(pos, fanComponent);
+
+                    // LOGGER.atInfo().log(PREFIX + "Fan placed at " + pos + " facing " +
+                    // outputDirection);
                 } else if (itemId.contains("Circuit_Button")) {
                     // Handle button placement with rotation to determine facing direction
                     ButtonSystem.Direction facing = ButtonSystem.Direction.NORTH; // Default
@@ -748,7 +829,7 @@ public class PlaceBlockEventSystem extends EntityEventSystem<EntityStore, PlaceB
             }
         }
     }
-    
+
     /**
      * Discover and register adjacent circuit blocks when a Light Sensor is placed.
      * This ensures that adjacent lamps, pistons, etc. are properly registered
@@ -757,18 +838,17 @@ public class PlaceBlockEventSystem extends EntityEventSystem<EntityStore, PlaceB
     private void discoverAdjacentCircuitBlocks(Vector3i centerPos) {
         // Check all 6 adjacent positions
         int[][] offsets = {
-            {1, 0, 0}, {-1, 0, 0},  // X axis
-            {0, 1, 0}, {0, -1, 0},  // Y axis  
-            {0, 0, 1}, {0, 0, -1}   // Z axis
+                { 1, 0, 0 }, { -1, 0, 0 }, // X axis
+                { 0, 1, 0 }, { 0, -1, 0 }, // Y axis
+                { 0, 0, 1 }, { 0, 0, -1 } // Z axis
         };
-        
+
         for (int[] offset : offsets) {
             Vector3i adjacentPos = new Vector3i(
-                centerPos.getX() + offset[0],
-                centerPos.getY() + offset[1], 
-                centerPos.getZ() + offset[2]
-            );
-            
+                    centerPos.getX() + offset[0],
+                    centerPos.getY() + offset[1],
+                    centerPos.getZ() + offset[2]);
+
             // Try to discover and register the adjacent block
             plugin.tryDiscoverCircuitBlock(adjacentPos);
         }

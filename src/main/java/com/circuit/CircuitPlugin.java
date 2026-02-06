@@ -74,6 +74,7 @@ public final class CircuitPlugin extends JavaPlugin {
     private GateSystem gateSystem;
     private PressurePlateSystem pressurePlateSystem;
     private LightSensorSystem lightSensorSystem;
+    private FanSystem fanSystem;
 
     @Override
     protected void setup() {
@@ -164,6 +165,11 @@ public final class CircuitPlugin extends JavaPlugin {
         this.lightSensorSystem = new LightSensorSystem(this);
         this.getEntityStoreRegistry().registerSystem(this.lightSensorSystem);
         // LOGGER.atInfo().log(PREFIX + "LightSensorSystem registered");
+
+        // Register the Fan system
+        this.fanSystem = new FanSystem(this);
+        this.getEntityStoreRegistry().registerSystem(this.fanSystem);
+        // LOGGER.atInfo().log(PREFIX + "FanSystem registered");
 
         // Register the Floating Item system
         FloatingItemSystem floatingItemSystem = new FloatingItemSystem(
@@ -352,6 +358,11 @@ public final class CircuitPlugin extends JavaPlugin {
         if (vacuumSystem != null) {
             vacuumSystem.unregisterVacuumPipe(pos);
             // Note: No need to check if it was actually a vacuum pipe, unregister is safe
+        }
+
+        // Handle fan removal
+        if (fanSystem != null) {
+            fanSystem.unregisterFan(pos);
         }
 
         // Handle lamp removal
@@ -619,6 +630,19 @@ public final class CircuitPlugin extends JavaPlugin {
                 return false;
             }
 
+            // Check if it's a fan block
+            if (blockId.contains("Circuit_Fan")) {
+                // Register with fan system if not already registered
+                if (fanSystem != null && !fanSystem.isFanAt(position)) {
+                    PipeComponent fanComponent = new PipeComponent();
+                    // Default direction for discovered fans
+                    fanComponent.setOutputDirection(PipeComponent.Direction.NORTH);
+                    fanSystem.registerFan(position, fanComponent);
+                    // LOGGER.atInfo().log(PREFIX + "[Discovery] Fan REGISTERED at " + position);
+                }
+                return false;
+            }
+
         } catch (Exception e) {
             LOGGER.atWarning().log(PREFIX + "[Discovery] Error checking block at " + position + ": " + e);
         }
@@ -851,6 +875,10 @@ public final class CircuitPlugin extends JavaPlugin {
         return lightSensorSystem;
     }
 
+    public FanSystem getFanSystem() {
+        return fanSystem;
+    }
+
     public static CircuitPlugin get() {
         return instance;
     }
@@ -1018,6 +1046,11 @@ public final class CircuitPlugin extends JavaPlugin {
             lightSensorSystem.loadSensors(getDataDirectory());
         }
 
+        // Load saved fan data
+        if (fanSystem != null) {
+            fanSystem.loadFans();
+        }
+
         // Load saved wire data
         loadWires();
 
@@ -1069,6 +1102,11 @@ public final class CircuitPlugin extends JavaPlugin {
         // Save light sensor data
         if (lightSensorSystem != null) {
             lightSensorSystem.saveSensors(getDataDirectory());
+        }
+
+        // Save fan data
+        if (fanSystem != null) {
+            fanSystem.saveFans();
         }
 
         // Save wire data
