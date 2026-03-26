@@ -1,0 +1,191 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Circuit_Detector_Rail.name"
+  },
+  "MaxStack": 50,
+  "Icon": "Icons/Items/Circuit/Circuit_Detector_Rail.png",
+  "Categories": [
+    "Blocks.Circuit"
+  ],
+  "Interactions": {
+    "Primary": "Block_Primary",
+    "Secondary": "Block_Secondary"
+  },
+  "BlockType": {
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Tinkering/Rails/Rail.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "BlockTextures/Circuit/Circuit_Detector_Rail.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "NESW",
+    "Flags": {},
+    "IsTrigger": true,
+    "Gathering": {
+      "Soft": {}
+    },
+    "BlockParticleSetId": "Stone",
+    "Material": "Solid",
+    "HitboxType": "Rail",
+    "BlockSoundSetId": "Metal",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "ChangeState",
+            "Changes": {
+              "default": "Active",
+              "Active": "Inactive",
+              "Inactive": "Active"
+            }
+          }
+        ]
+      }
+    },
+    "State": {
+      "Definitions": {
+        "Active": {
+          "CustomModelTexture": [
+            {
+              "Texture": "BlockTextures/Circuit/Circuit_Detector_Rail_Active.png",
+              "Weight": 1
+            }
+          ]
+        },
+        "Inactive": {
+          "CustomModelTexture": [
+            {
+              "Texture": "BlockTextures/Circuit/Circuit_Detector_Rail.png",
+              "Weight": 1
+            }
+          ]
+        }
+      }
+    },
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ],
+      "North": [
+        {
+          "FaceType": "Rail"
+        }
+      ],
+      "DownNorth": [
+        {
+          "FaceType": "Rail"
+        }
+      ],
+      "South": [
+        {
+          "FaceType": "Rail"
+        }
+      ],
+      "DownSouth": [
+        {
+          "FaceType": "Rail"
+        }
+      ]
+    },
+    "Supporting": {
+      "North": [
+        {
+          "FaceType": "Rail"
+        }
+      ],
+      "DownNorth": [
+        {
+          "FaceType": "Rail"
+        }
+      ],
+      "South": [
+        {
+          "FaceType": "Rail"
+        }
+      ],
+      "DownSouth": [
+        {
+          "FaceType": "Rail"
+        }
+      ]
+    },
+    "Rail": {
+      "Points": [
+        {
+          "Point": {
+            "X": 0.5,
+            "Y": 0.1,
+            "Z": 0
+          },
+          "Normal": {
+            "X": 0,
+            "Y": 1,
+            "Z": 0
+          }
+        },
+        {
+          "Point": {
+            "X": 0.5,
+            "Y": 0.1,
+            "Z": 1
+          },
+          "Normal": {
+            "X": 0,
+            "Y": 1,
+            "Z": 0
+          }
+        }
+      ]
+    },
+    "ParticleColor": "#8b2020"
+  },
+  "PlayerAnimationsId": "Item",
+  "IconProperties": {
+    "Scale": 0.765,
+    "Translation": [
+      0,
+      -1.7
+    ],
+    "Rotation": [
+      90,
+      0,
+      0
+    ]
+  },
+  "Tags": {
+    "Type": [
+      "Circuit",
+      "Rail"
+    ]
+  },
+  "Recipe": {
+    "TimeSeconds": 0,
+    "OutputQuantity": 2,
+    "Input": [
+      {
+        "ItemId": "Rail",
+        "Quantity": 2
+      },
+      {
+        "ItemId": "Circuit_Pressure_Plate",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "Engineer_Workbench",
+        "Categories": [
+          "Misc"
+        ],
+        "RequiredTierLevel": 2
+      }
+    ]
+  },
+  "ItemSoundSetId": "ISS_Items_Metal"
+}

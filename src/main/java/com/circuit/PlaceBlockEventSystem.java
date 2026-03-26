@@ -733,6 +733,99 @@ public class PlaceBlockEventSystem extends EntityEventSystem<EntityStore, PlaceB
                     plugin.getEnergySystem().updateNetwork(pos);
                     // Critical: Update neighbors so wires connect to the new repeater
                     plugin.getEnergySystem().updateNeighbors(pos);
+                } else if (itemId.contains("Circuit_Powered_Rail")) {
+                    // Handle Powered Rail placement with rotation
+                    int rotationIndex = 0;
+                    try {
+                        Object rotation = event.getRotation();
+                        if (rotation != null) {
+                            try {
+                                java.lang.reflect.Method getIndex = rotation.getClass().getMethod("index");
+                                rotationIndex = ((Number) getIndex.invoke(rotation)).intValue();
+                            } catch (Exception e) {
+                                try {
+                                    java.lang.reflect.Method getIndex = rotation.getClass().getMethod("getIndex");
+                                    rotationIndex = ((Number) getIndex.invoke(rotation)).intValue();
+                                } catch (Exception e2) {
+                                    String rotStr = rotation.toString();
+                                    if (rotStr.contains("index=")) {
+                                        String indexPart = rotStr.substring(rotStr.indexOf("index=") + 6);
+                                        indexPart = indexPart.split("[,\\]]")[0].trim();
+                                        rotationIndex = Integer.parseInt(indexPart);
+                                    }
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        LOGGER.atWarning().log(PREFIX + "[PoweredRail] Could not determine rotation: " + e.getMessage());
+                    }
+
+                    plugin.getPoweredRailSystem().registerPoweredRail(pos, rotationIndex);
+                    // Trigger energy update to check if it should be powered immediately
+                    plugin.getEnergySystem().updateNetwork(pos);
+
+                } else if (itemId.contains("Circuit_Switch_Rail")) {
+                    // Handle Switch Rail placement with rotation
+                    int rotationIndex = 0;
+                    try {
+                        Object rotation = event.getRotation();
+                        if (rotation != null) {
+                            try {
+                                java.lang.reflect.Method getIndex = rotation.getClass().getMethod("index");
+                                rotationIndex = ((Number) getIndex.invoke(rotation)).intValue();
+                            } catch (Exception e) {
+                                try {
+                                    java.lang.reflect.Method getIndex = rotation.getClass().getMethod("getIndex");
+                                    rotationIndex = ((Number) getIndex.invoke(rotation)).intValue();
+                                } catch (Exception e2) {
+                                    String rotStr = rotation.toString();
+                                    if (rotStr.contains("index=")) {
+                                        String indexPart = rotStr.substring(rotStr.indexOf("index=") + 6);
+                                        indexPart = indexPart.split("[,\\]]")[0].trim();
+                                        rotationIndex = Integer.parseInt(indexPart);
+                                    }
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        LOGGER.atWarning().log(PREFIX + "[SwitchRail] Could not determine rotation: " + e.getMessage());
+                    }
+
+                    plugin.getSwitchRailSystem().registerSwitchRail(pos, rotationIndex);
+                    // Trigger energy update to check if it should change state immediately
+                    plugin.getEnergySystem().updateNetwork(pos);
+
+                } else if (itemId.contains("Circuit_Detector_Rail")) {
+                    // Handle Detector Rail placement with rotation
+                    int rotationIndex = 0;
+                    try {
+                        Object rotation = event.getRotation();
+                        if (rotation != null) {
+                            try {
+                                java.lang.reflect.Method getIndex = rotation.getClass().getMethod("index");
+                                rotationIndex = ((Number) getIndex.invoke(rotation)).intValue();
+                            } catch (Exception e) {
+                                try {
+                                    java.lang.reflect.Method getIndex = rotation.getClass().getMethod("getIndex");
+                                    rotationIndex = ((Number) getIndex.invoke(rotation)).intValue();
+                                } catch (Exception e2) {
+                                    String rotStr = rotation.toString();
+                                    if (rotStr.contains("index=")) {
+                                        String indexPart = rotStr.substring(rotStr.indexOf("index=") + 6);
+                                        indexPart = indexPart.split("[,\\]]")[0].trim();
+                                        rotationIndex = Integer.parseInt(indexPart);
+                                    }
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        LOGGER.atWarning().log(PREFIX + "[DetectorRail] Could not determine rotation: " + e.getMessage());
+                    }
+
+                    plugin.getDetectorRailSystem().registerDetectorRail(pos, rotationIndex);
+                    // Trigger energy update
+                    plugin.getEnergySystem().updateNetwork(pos);
+
                 } else if (itemId.contains("Circuit_Gate_")) {
                     // Handle gate placement with rotation
                     CircuitComponent.Direction facing = CircuitComponent.Direction.NORTH; // Default

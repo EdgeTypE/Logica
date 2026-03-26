@@ -27,12 +27,12 @@ public class PipeComponent implements Component<EntityStore> {
     private boolean connectDown = false;
 
     // Transfer cooldown to prevent rapid item movement
-    private float transferCooldown = 0f;
-    private static final float TRANSFER_DELAY = 0.05f; // 1 tick at 20 TPS (faster transfer)
+    private float transferCooldown = 0.5f;
+    private static final float TRANSFER_DELAY = 0.25f; // 1 tick at 20 TPS (faster transfer)
 
     // Track the last direction we pulled from to prevent immediate backflow
     private PipeComponent.Direction lastPullDirection = null;
-    
+
     // Output direction - the direction this pipe pushes items to
     private PipeComponent.Direction outputDirection = Direction.NORTH; // Default output direction
 
@@ -51,7 +51,7 @@ public class PipeComponent implements Component<EntityStore> {
         } catch (Exception e) {
             this.buffer = null;
         }
-        
+
         // Copy buffer contents if needed
         if (other.buffer != null && !other.buffer.isEmpty()) {
             try {
@@ -60,7 +60,7 @@ public class PipeComponent implements Component<EntityStore> {
                 // Ignore copy errors
             }
         }
-        
+
         this.connectNorth = other.connectNorth;
         this.connectSouth = other.connectSouth;
         this.connectEast = other.connectEast;
@@ -85,7 +85,8 @@ public class PipeComponent implements Component<EntityStore> {
 
     public boolean hasItem() {
         try {
-            if (buffer == null) return false;
+            if (buffer == null)
+                return false;
             ItemStack item = buffer.getItemStack((short) 0);
             return item != null && !item.isEmpty();
         } catch (Exception e) {
@@ -94,19 +95,53 @@ public class PipeComponent implements Component<EntityStore> {
     }
 
     // Connection states
-    public boolean isConnectedNorth() { return connectNorth; }
-    public boolean isConnectedSouth() { return connectSouth; }
-    public boolean isConnectedEast() { return connectEast; }
-    public boolean isConnectedWest() { return connectWest; }
-    public boolean isConnectedUp() { return connectUp; }
-    public boolean isConnectedDown() { return connectDown; }
+    public boolean isConnectedNorth() {
+        return connectNorth;
+    }
 
-    public void setConnectedNorth(boolean connected) { this.connectNorth = connected; }
-    public void setConnectedSouth(boolean connected) { this.connectSouth = connected; }
-    public void setConnectedEast(boolean connected) { this.connectEast = connected; }
-    public void setConnectedWest(boolean connected) { this.connectWest = connected; }
-    public void setConnectedUp(boolean connected) { this.connectUp = connected; }
-    public void setConnectedDown(boolean connected) { this.connectDown = connected; }
+    public boolean isConnectedSouth() {
+        return connectSouth;
+    }
+
+    public boolean isConnectedEast() {
+        return connectEast;
+    }
+
+    public boolean isConnectedWest() {
+        return connectWest;
+    }
+
+    public boolean isConnectedUp() {
+        return connectUp;
+    }
+
+    public boolean isConnectedDown() {
+        return connectDown;
+    }
+
+    public void setConnectedNorth(boolean connected) {
+        this.connectNorth = connected;
+    }
+
+    public void setConnectedSouth(boolean connected) {
+        this.connectSouth = connected;
+    }
+
+    public void setConnectedEast(boolean connected) {
+        this.connectEast = connected;
+    }
+
+    public void setConnectedWest(boolean connected) {
+        this.connectWest = connected;
+    }
+
+    public void setConnectedUp(boolean connected) {
+        this.connectUp = connected;
+    }
+
+    public void setConnectedDown(boolean connected) {
+        this.connectDown = connected;
+    }
 
     // Cooldown management
     public float getTransferCooldown() {
@@ -134,12 +169,18 @@ public class PipeComponent implements Component<EntityStore> {
      */
     public int getConnectionCount() {
         int count = 0;
-        if (connectNorth) count++;
-        if (connectSouth) count++;
-        if (connectEast) count++;
-        if (connectWest) count++;
-        if (connectUp) count++;
-        if (connectDown) count++;
+        if (connectNorth)
+            count++;
+        if (connectSouth)
+            count++;
+        if (connectEast)
+            count++;
+        if (connectWest)
+            count++;
+        if (connectUp)
+            count++;
+        if (connectDown)
+            count++;
         return count;
     }
 

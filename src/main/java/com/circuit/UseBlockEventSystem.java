@@ -14,6 +14,10 @@ import com.hypixel.hytale.server.core.event.events.ecs.UseBlockEvent;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.inventory.container.ItemContainer;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
+import com.circuit.ui.PipeUIPage;
+import com.hypixel.hytale.server.core.entity.entities.player.pages.PageManager;
+import com.hypixel.hytale.component.Ref;
+import com.hypixel.hytale.server.core.entity.entities.Player;
 
 import javax.annotation.Nonnull;
 
@@ -52,15 +56,16 @@ public class UseBlockEventSystem extends EntityEventSystem<EntityStore, UseBlock
             @Nonnull CommandBuffer<EntityStore> commandBuffer,
             @Nonnull UseBlockEvent.Pre event) {
 
-        // LOGGER.atInfo().log(PREFIX + "=== UseBlockEvent.Pre TRIGGERED ===");
-
         BlockType blockType = event.getBlockType();
+        String blockId = blockType != null ? blockType.getId() : "null";
+        LOGGER.atInfo().log(PREFIX + "DEBUG ECS UseBlock: blockId=" + blockId);
+
         if (blockType == null) {
             // LOGGER.atInfo().log(PREFIX + "blockType is NULL");
             return;
         }
 
-        String blockId = blockType.getId();
+        blockId = blockType.getId();
         Vector3i pos = event.getTargetBlock();
         // LOGGER.atInfo().log(PREFIX + "UseBlockEvent: blockId=" + blockId + " pos=" +
         // pos);
@@ -212,38 +217,28 @@ public class UseBlockEventSystem extends EntityEventSystem<EntityStore, UseBlock
                 // LOGGER.atInfo().log(PREFIX + "Buffer capacity: " + pipeBuffer.getCapacity());
                 // LOGGER.atInfo().log(PREFIX + "Buffer empty: " + pipeBuffer.isEmpty());
 
-                // Create ContainerWindow with just the ItemContainer
-                // LOGGER.atInfo().log(PREFIX + "Creating ContainerWindow...");
-                ContainerWindow pipeWindow = new ContainerWindow(pipeBuffer);
-                // LOGGER.atInfo().log(PREFIX + "ContainerWindow created: " + pipeWindow);
+                // Open the custom diagnostic UI instead of just the inventory
+                PageManager pageManager = playerEntity.getPageManager();
+                Ref<EntityStore> playerRefRef = archetypeChunk.getReferenceTo(index);
 
-                // Get WindowManager and open the window
-                var windowManager = playerEntity.getWindowManager();
-                // LOGGER.atInfo().log(PREFIX + "WindowManager: " + windowManager);
+                // LOGGER.atInfo().log(PREFIX + "DEBUG - PageManager: " + pageManager);
+                // LOGGER.atInfo().log(PREFIX + "DEBUG - PlayerRefRef: " + playerRefRef);
 
-                var entityRef = archetypeChunk.getReferenceTo(index);
-                // LOGGER.atInfo().log(PREFIX + "EntityRef: " + entityRef);
+                if (pageManager != null) {
+                    // LOGGER.atInfo().log(PREFIX + "DEBUG - Attempting to open PipeUIPage");
+                    pageManager.openCustomPage(playerRefRef, store,
+                            new PipeUIPage(playerEntity.getPlayerRef(), pipeComponent));
 
-                // Open the window
-                // LOGGER.atInfo().log(PREFIX + "Calling windowManager.openWindow()...");
-                var openedWindow = windowManager.openWindow(entityRef, pipeWindow, store);
-                // LOGGER.atInfo().log(PREFIX + "Window opened successfully!");
-                // LOGGER.atInfo().log(PREFIX + "Opened window: " + openedWindow);
-                // LOGGER.atInfo().log(PREFIX + "Window ID: " + openedWindow.getId());
-
-                // LOGGER.atInfo().log(
-                // PREFIX + "Successfully opened pipe inventory GUI (Window ID: " +
-                // openedWindow.getId() + ")");
-
-                // Show pipe info in chat
-                playerEntity.sendMessage(com.hypixel.hytale.server.core.Message
-                        .raw("Pipe Output Direction: " + pipeComponent.getOutputDirection()));
-                playerEntity.sendMessage(com.hypixel.hytale.server.core.Message
-                        .raw("Connections: " + pipeComponent.getConnectionCount() + " directions"));
-                playerEntity.sendMessage(com.hypixel.hytale.server.core.Message
-                        .raw("Note: Direction is set when placing the pipe based on your facing direction"));
-                playerEntity.sendMessage(com.hypixel.hytale.server.core.Message
-                        .raw("GUI opened successfully! Window ID: " + openedWindow.getId()));
+                    // Show pipe info in chat as well (keeps existing behavior but adds GUI)
+                    // playerEntity.sendMessage(com.hypixel.hytale.server.core.Message
+                    // .raw("Opening Pipe Diagnostics UI..."));
+                } else {
+                    LOGGER.atWarning().log(PREFIX + "DEBUG - PageManager is NULL, falling back to ContainerWindow");
+                    // Fallback to inventory window if page manager is missing
+                    ContainerWindow pipeWindow = new ContainerWindow(pipeBuffer);
+                    var windowManager = playerEntity.getWindowManager();
+                    windowManager.openWindow(playerRefRef, pipeWindow, store);
+                }
 
                 // LOGGER.atInfo().log(PREFIX + "=== PIPE INTERACTION DEBUG END (SUCCESS) ===");
 
@@ -343,11 +338,62 @@ public class UseBlockEventSystem extends EntityEventSystem<EntityStore, UseBlock
                 }
             }
         }
+
+        // Handle Circuit_Switch_Rail interaction - Cycle direction
+        if (blockId.contains("Circuit_Switch_Rail")) {
+            if (plugin.getSwitchRailSystem() != null) {
+                plugin.getSwitchRailSystem().cycleState(pos);
+
+                // Get player for feedback
+                var playerEntity = archetypeChunk.getComponent(index,
+                        com.hypixel.hytale.server.core.entity.entities.Player.getComponentType());
+                if (playerEntity != null) {
+                    SwitchRailSystem.SwitchState state = plugin.getSwitchRailSystem().getState(pos);
+                    String stateText = switch (state) {
+                        case STRAIGHT -> "Straight";
+                        case LEFT -> "Left";
+                        case RIGHT -> "Right";
+                    };
+                    playerEntity.sendMessage(com.hypixel.hytale.server.core.Message.raw("Switch: " + stateText));
+                }
+            }
+        }
+
+        // Handle Circuit_Powered_Rail interaction - Toggle power state manually
+        if (blockId.contains("Circuit_Powered_Rail")) {
+            if (plugin.getPoweredRailSystem() != null) {
+                boolean currentPower = plugin.getPoweredRailSystem().isPoweredRailPowered(pos);
+                plugin.getPoweredRailSystem().setPoweredRailState(pos, !currentPower);
+
+                // Get player for feedback
+                var playerEntity = archetypeChunk.getComponent(index,
+                        com.hypixel.hytale.server.core.entity.entities.Player.getComponentType());
+                if (playerEntity != null) {
+                    String stateText = !currentPower ? "ON (Boosting)" : "OFF (Braking)";
+                    playerEntity.sendMessage(com.hypixel.hytale.server.core.Message.raw("Powered Rail: " + stateText));
+                }
+            }
+        }
+
+        // Handle Wire interactions - Show energy level
+        if (blockId.contains("Circuit_Wire") || blockId.contains("Circuit_Golden_Wire")
+                || blockId.contains("Circuit_Wire_Block")) {
+            if (plugin.getEnergySystem() != null) {
+                int energyLevel = plugin.getEnergySystem().getEnergyLevel(pos);
+
+                // Get player for feedback
+                var playerEntity = archetypeChunk.getComponent(index,
+                        com.hypixel.hytale.server.core.entity.entities.Player.getComponentType());
+                if (playerEntity != null) {
+                    playerEntity
+                            .sendMessage(com.hypixel.hytale.server.core.Message.raw("Energy Level: " + energyLevel));
+                }
+            }
+        }
     }
 
     @Override
     public Query<EntityStore> getQuery() {
-        // LOGGER.atInfo().log(PREFIX + "getQuery() called");
-        return Archetype.empty();
+        return Player.getComponentType();
     }
 }

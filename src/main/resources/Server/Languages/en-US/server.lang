@@ -93,9 +93,16 @@ items.Circuit_Sticky_Piston_Extended.description = A sticky piston in its extend
 items.Circuit_Piston_Head.name = Piston Head
 items.Circuit_Piston_Head.description = The head of a piston.
 
+# Rails
+items.Circuit_Powered_Rail.name = Powered Rail
+items.Circuit_Powered_Rail.description = A rail that speeds up minecarts when powered, and brakes when unpowered.
+
+items.Circuit_Switch_Rail.name = Switch Rail
+items.Circuit_Switch_Rail.description = A rail switch that changes minecart direction. Can be toggled manually or by circuit signal.
+
+items.Circuit_Detector_Rail.name = Detector Rail
+items.Circuit_Detector_Rail.description = A rail that emits a circuit signal when a minecart passes over it.
+
 # Furniture
 items.Engineer_Workbench.name = Engineer's Workbench
 items.Engineer_Workbench.description = A workbench for crafting circuit components.
-
-items.Furniture_Crude_Chest_Small.name = Small Crude Chest
-items.Furniture_Crude_Chest_Small.description = A small chest for storing items.

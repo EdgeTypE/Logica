@@ -1,0 +1,148 @@
+Group {
+  LayoutMode: Center;
+  
+  // Ana Panel
+  Group #MainPanel {
+    Anchor: (Width: 400, Height: 480);
+    Background: #1a1a1a(0.98);
+    Padding: (Full: 20);
+    
+    // --- Başlık ---
+    Group #Header {
+      Anchor: (Height: 40, Top: 0, Left: 0, Right: 0);
+      Label #Title {
+        Text: "Pipe Diagnostics";
+        Style: (FontSize: 24, TextColor: #ffffff, HorizontalAlignment: Center);
+        Anchor: (Full: 0);
+      }
+    }
+
+    // --- İçerik ---
+    Group #Content {
+      Anchor: (Top: 50, Bottom: 40, Left: 0, Right: 0);
+      LayoutMode: Top;
+
+      // 1. Buffer Bölümü
+      Group #BufferSection {
+        Anchor: (Height: 90);
+        LayoutMode: Top;
+        
+        Label { 
+          Text: "Internal Buffer"; 
+          Style: (FontSize: 14, TextColor: #aaaaaa, HorizontalAlignment: Center);
+          Anchor: (Height: 20);
+        }
+        
+        Group {
+          Anchor: (Height: 70);
+          LayoutMode: CenterMiddle;
+          
+          ItemSlot #BufferSlot {
+            Anchor: (Width: 64, Height: 64);
+            ShowQuantity: true;
+            ShowQualityBackground: true;
+          }
+        }
+      }
+
+      // Spacer
+      Group { Anchor: (Height: 20); }
+
+      // 2. Bağlantı Matrisi (Grid Düzeltmesi)
+      Group #VisualizerSection {
+        Anchor: (Height: 180);
+        LayoutMode: Top;
+
+        Label { 
+          Text: "Connection Matrix"; 
+          Style: (FontSize: 14, TextColor: #aaaaaa, HorizontalAlignment: Center);
+          Anchor: (Height: 20);
+        }
+
+        // Grid'i ortalamak için bir dış kapsayıcı (Wrapper)
+        Group #MatrixWrapper {
+          Anchor: (Height: 160);
+          LayoutMode: CenterMiddle; // Bu, içindeki kutuyu tam ortaya hizalar
+
+          // Sabit Boyutlu Kanvas (Canvas)
+          // LayoutMode: Full sayesinde içindekileri piksel piksel yerleştirebiliriz.
+          Group #MatrixContainer {
+            Anchor: (Width: 150, Height: 150);
+            LayoutMode: Full; 
+
+            // --- Koordinat Sistemi (40x40 kutular, 5px boşluk) ---
+            
+            // Sol (West) -> x=10, y=55
+            Group #NodeWest {
+              Anchor: (Width: 40, Height: 40, Left: 10, Top: 55);
+              Background: #333333;
+              Label { Text: "W"; Style: (HorizontalAlignment: Center, VerticalAlignment: Center, TextColor: #ffffff); Anchor:(Full:0); }
+            }
+            
+            // Orta (Core) -> x=55, y=55
+            Group {
+              Anchor: (Width: 40, Height: 40, Left: 55, Top: 55); 
+              Background: #555555;
+              Label { Text: "CORE"; Style: (FontSize:10, HorizontalAlignment:Center, VerticalAlignment:Center, TextColor: #aaaaaa); Anchor:(Full:0); }
+            }
+
+            // Sağ (East) -> x=100, y=55
+            Group #NodeEast {
+              Anchor: (Width: 40, Height: 40, Left: 100, Top: 55);
+              Background: #333333;
+              Label { Text: "E"; Style: (HorizontalAlignment: Center, VerticalAlignment: Center, TextColor: #ffffff); Anchor:(Full:0); }
+            }
+
+            // Üst (North) -> x=55, y=10
+            Group #NodeNorth {
+              Anchor: (Width: 40, Height: 40, Left: 55, Top: 10);
+              Background: #333333;
+              Label { Text: "N"; Style: (HorizontalAlignment: Center, VerticalAlignment: Center, TextColor: #ffffff); Anchor:(Full:0); }
+            }
+
+            // Alt (South) -> x=55, y=100
+            Group #NodeSouth {
+              Anchor: (Width: 40, Height: 40, Left: 55, Top: 100);
+              Background: #333333;
+              Label { Text: "S"; Style: (HorizontalAlignment: Center, VerticalAlignment: Center, TextColor: #ffffff); Anchor:(Full:0); }
+            }
+
+            // Yukarı (Up) -> Sağ Üst Köşe -> x=100, y=10
+            Group #NodeUp {
+              Anchor: (Width: 40, Height: 40, Left: 100, Top: 10);
+              Background: #333333;
+              Label { Text: "UP"; Style: (FontSize: 10, HorizontalAlignment: Center, VerticalAlignment: Center, TextColor: #ffffff); Anchor:(Full:0); }
+            }
+            
+            // Aşağı (Down) -> Sağ Alt Köşe -> x=100, y=100
+            Group #NodeDown {
+              Anchor: (Width: 40, Height: 40, Left: 100, Top: 100);
+              Background: #333333;
+              Label { Text: "DWN"; Style: (FontSize: 10, HorizontalAlignment: Center, VerticalAlignment: Center, TextColor: #ffffff); Anchor:(Full:0); }
+            }
+          }
+        }
+      }
+
+      // 3. Durum Metni
+      Group #InfoPanel {
+        Anchor: (Height: 30);
+        LayoutMode: CenterMiddle;
+        Label #StatusText {
+          Text: "Status: IDLE";
+          Style: (FontSize: 16, TextColor: #cccccc);
+        }
+      }
+    }
+
+    // --- Alt Bilgi ---
+    Group {
+      Anchor: (Bottom: 15, Height: 20, Left: 0, Right: 0);
+      LayoutMode: CenterMiddle;
+      Label {
+        Text: "Blue: Input | Orange: Output | Gray: None";
+        Style: (FontSize: 12, TextColor: #666666);
+      }
+    }
+  }
+}

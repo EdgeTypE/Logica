@@ -1,0 +1,488 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Circuit_Switch_Rail.name"
+  },
+  "MaxStack": 50,
+  "Icon": "Icons/Items/Circuit/Circuit_Switch_Rail.png",
+  "Categories": [
+    "Blocks.Circuit"
+  ],
+  "Interactions": {
+    "Primary": "Block_Primary",
+    "Secondary": "Block_Secondary"
+  },
+  "BlockType": {
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Tinkering/Rails/Rail.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "BlockTextures/Circuit/Circuit_Switch_Rail.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "NESW",
+    "Flags": {
+      "IsUsable": true
+    },
+    "Gathering": {
+      "Soft": {}
+    },
+    "BlockParticleSetId": "Stone",
+    "Material": "Solid",
+    "HitboxType": "Rail",
+    "BlockSoundSetId": "Metal",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "ChangeState",
+            "Changes": {
+              "default": "Left",
+              "Straight": "Left",
+              "Left": "Right",
+              "Right": "Straight"
+            }
+          }
+        ]
+      }
+    },
+    "State": {
+      "Definitions": {
+        "Straight": {
+          "InteractionHint": "server.items.interactionHints.use",
+          "CustomModel": "Blocks/Tinkering/Rails/Rail.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "BlockTextures/Circuit/Circuit_Switch_Rail.png",
+              "Weight": 1
+            }
+          ],
+          "Support": {
+            "Down": [
+              {
+                "FaceType": "Full"
+              }
+            ],
+            "North": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "South": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "DownNorth": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "DownSouth": [
+              {
+                "FaceType": "Rail"
+              }
+            ]
+          },
+          "Supporting": {
+            "North": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "South": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "DownNorth": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "DownSouth": [
+              {
+                "FaceType": "Rail"
+              }
+            ]
+          },
+          "Rail": {
+            "Points": [
+              {
+                "Point": {
+                  "X": 0.5,
+                  "Y": 0.1,
+                  "Z": 0
+                },
+                "Normal": {
+                  "X": 0,
+                  "Y": 1,
+                  "Z": 0
+                }
+              },
+              {
+                "Point": {
+                  "X": 0.5,
+                  "Y": 0.1,
+                  "Z": 1
+                },
+                "Normal": {
+                  "X": 0,
+                  "Y": 1,
+                  "Z": 0
+                }
+              }
+            ]
+          }
+        },
+        "Left": {
+          "InteractionHint": "server.items.interactionHints.use",
+          "CustomModel": "Blocks/Tinkering/Rails/Rail_Corner_Left.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "BlockTextures/Circuit/Circuit_Switch_Rail.png",
+              "Weight": 1
+            }
+          ],
+          "Support": {
+            "West": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "DownWest": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "South": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "DownSouth": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "Down": [
+              {
+                "FaceType": "Full"
+              }
+            ]
+          },
+          "Supporting": {
+            "West": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "South": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "DownWest": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "DownSouth": [
+              {
+                "FaceType": "Rail"
+              }
+            ]
+          },
+          "FlipType": "Orthogonal",
+          "Rail": {
+            "Points": [
+              {
+                "Point": {
+                  "X": 0,
+                  "Y": 0.1,
+                  "Z": 0.5
+                },
+                "Normal": {
+                  "X": 0,
+                  "Y": 1,
+                  "Z": 0
+                }
+              },
+              {
+                "Point": {
+                  "X": 0.3,
+                  "Y": 0.1,
+                  "Z": 0.5
+                },
+                "Normal": {
+                  "X": 0,
+                  "Y": 1,
+                  "Z": 0
+                }
+              },
+              {
+                "Point": {
+                  "X": 0.5,
+                  "Y": 0.1,
+                  "Z": 0.7
+                },
+                "Normal": {
+                  "X": 0,
+                  "Y": 1,
+                  "Z": 0
+                }
+              },
+              {
+                "Point": {
+                  "X": 0.5,
+                  "Y": 0.1,
+                  "Z": 1
+                },
+                "Normal": {
+                  "X": 0,
+                  "Y": 1,
+                  "Z": 0
+                }
+              }
+            ]
+          }
+        },
+        "Right": {
+          "InteractionHint": "server.items.interactionHints.use",
+          "CustomModel": "Blocks/Tinkering/Rails/Rail_Corner_Right.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "BlockTextures/Circuit/Circuit_Switch_Rail.png",
+              "Weight": 1
+            }
+          ],
+          "Support": {
+            "East": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "DownEast": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "South": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "DownSouth": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "Down": [
+              {
+                "FaceType": "Full"
+              }
+            ]
+          },
+          "Supporting": {
+            "East": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "South": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "DownEast": [
+              {
+                "FaceType": "Rail"
+              }
+            ],
+            "DownSouth": [
+              {
+                "FaceType": "Rail"
+              }
+            ]
+          },
+          "FlipType": "Orthogonal",
+          "Rail": {
+            "Points": [
+              {
+                "Point": {
+                  "X": 1.0,
+                  "Y": 0.1,
+                  "Z": 0.5
+                },
+                "Normal": {
+                  "X": 0,
+                  "Y": 1,
+                  "Z": 0
+                }
+              },
+              {
+                "Point": {
+                  "X": 0.7,
+                  "Y": 0.1,
+                  "Z": 0.5
+                },
+                "Normal": {
+                  "X": 0,
+                  "Y": 1,
+                  "Z": 0
+                }
+              },
+              {
+                "Point": {
+                  "X": 0.5,
+                  "Y": 0.1,
+                  "Z": 0.7
+                },
+                "Normal": {
+                  "X": 0,
+                  "Y": 1,
+                  "Z": 0
+                }
+              },
+              {
+                "Point": {
+                  "X": 0.5,
+                  "Y": 0.1,
+                  "Z": 1
+                },
+                "Normal": {
+                  "X": 0,
+                  "Y": 1,
+                  "Z": 0
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ],
+      "North": [
+        {
+          "FaceType": "Rail"
+        }
+      ],
+      "DownNorth": [
+        {
+          "FaceType": "Rail"
+        }
+      ],
+      "South": [
+        {
+          "FaceType": "Rail"
+        }
+      ],
+      "DownSouth": [
+        {
+          "FaceType": "Rail"
+        }
+      ]
+    },
+    "Supporting": {
+      "North": [
+        {
+          "FaceType": "Rail"
+        }
+      ],
+      "DownNorth": [
+        {
+          "FaceType": "Rail"
+        }
+      ],
+      "South": [
+        {
+          "FaceType": "Rail"
+        }
+      ],
+      "DownSouth": [
+        {
+          "FaceType": "Rail"
+        }
+      ]
+    },
+    "Rail": {
+      "Points": [
+        {
+          "Point": {
+            "X": 0.5,
+            "Y": 0.1,
+            "Z": 0
+          },
+          "Normal": {
+            "X": 0,
+            "Y": 1,
+            "Z": 0
+          }
+        },
+        {
+          "Point": {
+            "X": 0.5,
+            "Y": 0.1,
+            "Z": 1
+          },
+          "Normal": {
+            "X": 0,
+            "Y": 1,
+            "Z": 0
+          }
+        }
+      ]
+    },
+    "ParticleColor": "#3a7f3a"
+  },
+  "PlayerAnimationsId": "Item",
+  "IconProperties": {
+    "Scale": 0.765,
+    "Translation": [
+      0,
+      -1.7
+    ],
+    "Rotation": [
+      90,
+      0,
+      0
+    ]
+  },
+  "Tags": {
+    "Type": [
+      "Circuit",
+      "Rail"
+    ]
+  },
+  "Recipe": {
+    "TimeSeconds": 0,
+    "OutputQuantity": 2,
+    "Input": [
+      {
+        "ItemId": "Rail",
+        "Quantity": 2
+      },
+      {
+        "ItemId": "Circuit_Lever",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "Engineer_Workbench",
+        "Categories": [
+          "Misc"
+        ],
+        "RequiredTierLevel": 2
+      }
+    ]
+  },
+  "ItemSoundSetId": "ISS_Items_Metal"
+}

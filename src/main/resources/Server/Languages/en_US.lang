@@ -89,5 +89,3 @@ server.items.Circuit_Piston_Head.description = The head of a piston.
 server.items.Engineer_Workbench.name = Engineer Workbench
 server.items.Engineer_Workbench.description = A workbench for crafting circuit components.
 
-server.items.Furniture_Crude_Chest_Small.name = Small Crude Chest
-server.items.Furniture_Crude_Chest_Small.description = A small chest for storing items.

@@ -128,17 +128,22 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
                 blockInfo.type == BlockTypeEnum.BUTTON || blockInfo.type == BlockTypeEnum.LAMP
                 || blockInfo.type == BlockTypeEnum.FAN ||
                 blockInfo.type == BlockTypeEnum.REPEATER || blockInfo.type == BlockTypeEnum.GATE ||
-                blockInfo.type == BlockTypeEnum.LIGHT_SENSOR) {
+                blockInfo.type == BlockTypeEnum.LIGHT_SENSOR ||
+                blockInfo.type == BlockTypeEnum.POWERED_RAIL || blockInfo.type == BlockTypeEnum.SWITCH_RAIL ||
+                blockInfo.type == BlockTypeEnum.DETECTOR_RAIL) {
             collected.add(pos);
 
-            // Recursively collect neighbors (but lamps, fans, repeaters, and gates don't
+            // Recursively collect neighbors (but lamps, fans, repeaters, gates, and consumer rails don't
             // propagate further in this immediate pass)
             // Gates are like repeaters - they are boundaries that need to check their
             // inputs but don't propagate the network collection further
             // Light sensors ARE power sources, so they NEED to propagate to neighbors
+            // Detector rails ARE power sources, so they propagate too
             if (blockInfo.type != BlockTypeEnum.LAMP && blockInfo.type != BlockTypeEnum.FAN
                     && blockInfo.type != BlockTypeEnum.REPEATER
-                    && blockInfo.type != BlockTypeEnum.GATE) {
+                    && blockInfo.type != BlockTypeEnum.GATE
+                    && blockInfo.type != BlockTypeEnum.POWERED_RAIL
+                    && blockInfo.type != BlockTypeEnum.SWITCH_RAIL) {
                 for (int[] offset : NEIGHBOR_OFFSETS) {
                     Vector3i neighbor = new Vector3i(pos.getX() + offset[0], pos.getY() + offset[1],
                             pos.getZ() + offset[2]);
@@ -188,10 +193,11 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
                 // Debug: Log neighbor power for Light Sensors
                 LightSensorSystem lightSensorSystem = plugin.getLightSensorSystem();
                 if (lightSensorSystem != null && lightSensorSystem.isSensorAt(neighbor)) {
-                    LOGGER.atInfo()
-                            .log(PREFIX + "[Debug] Lamp at " + pos + " checking Light Sensor neighbor at " + neighbor +
-                                    " -> power=" + neighborPower + " (sensor powered="
-                                    + lightSensorSystem.isSensorPowered(neighbor) + ")");
+                    // LOGGER.atInfo()
+                    // .log(PREFIX + "[Debug] Lamp at " + pos + " checking Light Sensor neighbor at
+                    // " + neighbor +
+                    // " -> power=" + neighborPower + " (sensor powered="
+                    // + lightSensorSystem.isSensorPowered(neighbor) + ")");
                 }
 
                 // Also check for strong power through blocks
@@ -212,8 +218,9 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
             int oldPower = energyLevels.getOrDefault(circuitPos, -1);
             if (receivedPower != oldPower) {
                 energyLevels.put(circuitPos, receivedPower);
-                LOGGER.atInfo()
-                        .log(PREFIX + "[Debug] Lamp power update at " + pos + ": " + oldPower + " -> " + receivedPower);
+                // LOGGER.atInfo()
+                // .log(PREFIX + "[Debug] Lamp power update at " + pos + ": " + oldPower + " ->
+                // " + receivedPower);
                 return true;
             }
             return false;
@@ -331,8 +338,80 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
             int oldPower = energyLevels.getOrDefault(circuitPos, -1);
             if (power != oldPower) {
                 energyLevels.put(circuitPos, power);
-                LOGGER.atInfo()
-                        .log(PREFIX + "[Debug] Light Sensor power update at " + pos + ": " + oldPower + " -> " + power);
+                // LOGGER.atInfo()
+                // .log(PREFIX + "[Debug] Light Sensor power update at " + pos + ": " + oldPower
+                // + " -> " + power);
+                return true;
+            }
+            return false;
+        }
+
+        if (blockInfo.type == BlockTypeEnum.POWERED_RAIL) {
+            // Powered Rail: Passive consumer - update based on received power
+            int receivedPower = 0;
+            for (int[] offset : NEIGHBOR_OFFSETS) {
+                Vector3i neighbor = new Vector3i(pos.getX() + offset[0], pos.getY() + offset[1],
+                        pos.getZ() + offset[2]);
+                int neighborPower = getPowerOutput(neighbor, pos);
+                if (neighborPower > receivedPower) {
+                    receivedPower = neighborPower;
+                }
+                int strongPower = getStrongPowerFromBlock(neighbor);
+                if (strongPower > receivedPower) {
+                    receivedPower = strongPower;
+                }
+            }
+            // Update powered rail system
+            PoweredRailSystem poweredRailSystem = plugin.getPoweredRailSystem();
+            if (poweredRailSystem != null) {
+                poweredRailSystem.setPoweredRailState(pos, receivedPower > 0);
+            }
+            CircuitPos circuitPos = CircuitPos.from(pos);
+            int oldPower = energyLevels.getOrDefault(circuitPos, -1);
+            if (receivedPower != oldPower) {
+                energyLevels.put(circuitPos, receivedPower);
+                return true;
+            }
+            return false;
+        }
+
+        if (blockInfo.type == BlockTypeEnum.SWITCH_RAIL) {
+            // Switch Rail: Passive consumer - update direction based on received power
+            int receivedPower = 0;
+            for (int[] offset : NEIGHBOR_OFFSETS) {
+                Vector3i neighbor = new Vector3i(pos.getX() + offset[0], pos.getY() + offset[1],
+                        pos.getZ() + offset[2]);
+                int neighborPower = getPowerOutput(neighbor, pos);
+                if (neighborPower > receivedPower) {
+                    receivedPower = neighborPower;
+                }
+                int strongPower = getStrongPowerFromBlock(neighbor);
+                if (strongPower > receivedPower) {
+                    receivedPower = strongPower;
+                }
+            }
+            // Update switch rail system
+            SwitchRailSystem switchRailSystem = plugin.getSwitchRailSystem();
+            if (switchRailSystem != null) {
+                switchRailSystem.updateSwitchState(pos, receivedPower);
+            }
+            CircuitPos circuitPos = CircuitPos.from(pos);
+            int oldPower = energyLevels.getOrDefault(circuitPos, -1);
+            if (receivedPower != oldPower) {
+                energyLevels.put(circuitPos, receivedPower);
+                return true;
+            }
+            return false;
+        }
+
+        if (blockInfo.type == BlockTypeEnum.DETECTOR_RAIL) {
+            // Detector Rail: Power source - get power from DetectorRailSystem
+            DetectorRailSystem detectorRailSystem = plugin.getDetectorRailSystem();
+            int power = (detectorRailSystem != null && detectorRailSystem.isDetectorRailActive(pos)) ? 15 : 0;
+            CircuitPos circuitPos = CircuitPos.from(pos);
+            int oldPower = energyLevels.getOrDefault(circuitPos, -1);
+            if (power != oldPower) {
+                energyLevels.put(circuitPos, power);
                 return true;
             }
             return false;
@@ -550,9 +629,25 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
             return lightSensorSystem.getPowerOutput(pos);
         }
 
+        // Check if this is a powered Detector Rail - power source
+        DetectorRailSystem detectorRailSystem = plugin.getDetectorRailSystem();
+        if (detectorRailSystem != null && detectorRailSystem.isDetectorRailAt(pos)) {
+            return detectorRailSystem.getPowerOutput(pos);
+        }
+
         // Check if this is a Fan - PASSIVE CONSUMER
         FanSystem fanSystem = plugin.getFanSystem();
         if (fanSystem != null && fanSystem.hasFanAt(pos)) {
+            return 0;
+        }
+
+        // Check if this is a Powered Rail or Switch Rail - PASSIVE CONSUMERS
+        PoweredRailSystem poweredRailSystem = plugin.getPoweredRailSystem();
+        if (poweredRailSystem != null && poweredRailSystem.isPoweredRailAt(pos)) {
+            return 0;
+        }
+        SwitchRailSystem switchRailSystem = plugin.getSwitchRailSystem();
+        if (switchRailSystem != null && switchRailSystem.isSwitchRailAt(pos)) {
             return 0;
         }
 
@@ -578,7 +673,9 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
         if (blockCheck.type == BlockTypeEnum.AIR || blockCheck.type == BlockTypeEnum.WIRE
                 || blockCheck.type == BlockTypeEnum.GOLD_WIRE
                 || blockCheck.type == BlockTypeEnum.LEVER || blockCheck.type == BlockTypeEnum.BUTTON
-                || blockCheck.type == BlockTypeEnum.LIGHT_SENSOR) {
+                || blockCheck.type == BlockTypeEnum.LIGHT_SENSOR
+                || blockCheck.type == BlockTypeEnum.POWERED_RAIL || blockCheck.type == BlockTypeEnum.SWITCH_RAIL
+                || blockCheck.type == BlockTypeEnum.DETECTOR_RAIL) {
             return 0; // These blocks never transmit strong power from others
         }
 
@@ -648,7 +745,9 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
 
     // Helper for Block Identification
     private enum BlockTypeEnum {
-        WIRE, GOLD_WIRE, LEVER, BUTTON, LAMP, FAN, REPEATER, GATE, LIGHT_SENSOR, AIR, OTHER
+        WIRE, GOLD_WIRE, LEVER, BUTTON, LAMP, FAN, REPEATER, GATE, LIGHT_SENSOR,
+        POWERED_RAIL, SWITCH_RAIL, DETECTOR_RAIL,
+        AIR, OTHER
     }
 
     private static class BlockResult {
@@ -773,6 +872,22 @@ public class EnergyPropagationSystem extends EntityTickingSystem<EntityStore> {
                         LightSensorSystem lightSensorSystem = plugin.getLightSensorSystem();
                         boolean powered = lightSensorSystem != null && lightSensorSystem.isSensorPowered(pos);
                         return new BlockResult(BlockTypeEnum.LIGHT_SENSOR, powered, type);
+                    }
+
+                    if (id.contains("Circuit_Powered_Rail")) {
+                        PoweredRailSystem prs = plugin.getPoweredRailSystem();
+                        boolean powered = prs != null && prs.isPoweredRailPowered(pos);
+                        return new BlockResult(BlockTypeEnum.POWERED_RAIL, powered, type);
+                    }
+
+                    if (id.contains("Circuit_Switch_Rail")) {
+                        return new BlockResult(BlockTypeEnum.SWITCH_RAIL, false, type);
+                    }
+
+                    if (id.contains("Circuit_Detector_Rail")) {
+                        DetectorRailSystem drs = plugin.getDetectorRailSystem();
+                        boolean active = drs != null && drs.isDetectorRailActive(pos);
+                        return new BlockResult(BlockTypeEnum.DETECTOR_RAIL, active, type);
                     }
 
                     if (id.contains("Circuit_Repeater")) {

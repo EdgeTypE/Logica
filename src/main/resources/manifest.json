@@ -1,7 +1,7 @@
 {
     "Group": "EdgeTypE",
     "Name": "Logica",
-    "Version": "0.1.1",
+    "Version": "0.1.4",
     "Description": "A Redstone alternative for Hytale designed to bring automation and logic systems.",
     "Authors": [
         {
@@ -9,7 +9,7 @@
         }
     ],
     "Website": "goygoyengine.com",
-    "ServerVersion": "*",
+    "ServerVersion": "2026.02.17-255364b8e",
     "Dependencies": {
         
     },

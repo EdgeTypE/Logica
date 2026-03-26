@@ -27,7 +27,22 @@
         "BlockParticleSetId": "Metal",
         "BlockSoundSetId": "Metal",
         "VariantRotation": "All",
+        "Interactions": {
+            "Use": {
+                "Interactions": [
+                    {
+                        "Type": "ChangeState",
+                        "Changes": {
+                            "default": "Off_000000",
+                            "On": "Off_000000",
+                            "Off": "On_000000"
+                        }
+                    }
+                ]
+            }
+        },
         "State": {
+            "Default": "Active",
             "Definitions": {
                 "Active": {
                     "InteractionHint": "server.items.interactionHints.open",

@@ -93,6 +93,21 @@ public class BreakBlockEventSystem extends EntityEventSystem<EntityStore, BreakB
             if (blockId.contains("Circuit_Button") && plugin.getButtonSystem() != null) {
                 plugin.getButtonSystem().unregisterButton(pos);
             }
+
+            // Unregister Powered Rail if it was one
+            if (blockId.contains("Circuit_Powered_Rail") && plugin.getPoweredRailSystem() != null) {
+                plugin.getPoweredRailSystem().unregisterPoweredRail(pos);
+            }
+
+            // Unregister Switch Rail if it was one
+            if (blockId.contains("Circuit_Switch_Rail") && plugin.getSwitchRailSystem() != null) {
+                plugin.getSwitchRailSystem().unregisterSwitchRail(pos);
+            }
+
+            // Unregister Detector Rail if it was one
+            if (blockId.contains("Circuit_Detector_Rail") && plugin.getDetectorRailSystem() != null) {
+                plugin.getDetectorRailSystem().onDetectorRailRemoved(pos);
+            }
         }
 
         // Notify Observer system about block change (any block, not just circuit

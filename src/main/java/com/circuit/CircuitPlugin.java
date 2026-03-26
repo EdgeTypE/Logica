@@ -75,6 +75,9 @@ public final class CircuitPlugin extends JavaPlugin {
     private PressurePlateSystem pressurePlateSystem;
     private LightSensorSystem lightSensorSystem;
     private FanSystem fanSystem;
+    private PoweredRailSystem poweredRailSystem;
+    private SwitchRailSystem switchRailSystem;
+    private DetectorRailSystem detectorRailSystem;
 
     @Override
     protected void setup() {
@@ -171,6 +174,21 @@ public final class CircuitPlugin extends JavaPlugin {
         this.getEntityStoreRegistry().registerSystem(this.fanSystem);
         // LOGGER.atInfo().log(PREFIX + "FanSystem registered");
 
+        // Register the Powered Rail system
+        this.poweredRailSystem = new PoweredRailSystem(this);
+        this.getEntityStoreRegistry().registerSystem(this.poweredRailSystem);
+        // LOGGER.atInfo().log(PREFIX + "PoweredRailSystem registered");
+
+        // Register the Switch Rail system
+        this.switchRailSystem = new SwitchRailSystem(this);
+        this.getEntityStoreRegistry().registerSystem(this.switchRailSystem);
+        // LOGGER.atInfo().log(PREFIX + "SwitchRailSystem registered");
+
+        // Register the Detector Rail system
+        this.detectorRailSystem = new DetectorRailSystem(this);
+        this.getEntityStoreRegistry().registerSystem(this.detectorRailSystem);
+        // LOGGER.atInfo().log(PREFIX + "DetectorRailSystem registered");
+
         // Register the Floating Item system
         FloatingItemSystem floatingItemSystem = new FloatingItemSystem(
                 com.hypixel.hytale.server.core.modules.entity.component.TransformComponent.getComponentType(),
@@ -241,6 +259,8 @@ public final class CircuitPlugin extends JavaPlugin {
 
     private void onLivingEntityUseBlock(LivingEntityUseBlockEvent event) {
         String blockType = event.getBlockType();
+        // LOGGER.atInfo().log(PREFIX + "DEBUG GLOBAL UseBlock: blockType=" +
+        // blockType);
 
         // Only log for circuit blocks
         if (blockType != null && blockType.contains("Circuit_")) {
@@ -365,6 +385,21 @@ public final class CircuitPlugin extends JavaPlugin {
             fanSystem.unregisterFan(pos);
         }
 
+        // Handle powered rail removal
+        if (poweredRailSystem != null) {
+            poweredRailSystem.unregisterPoweredRail(pos);
+        }
+
+        // Handle switch rail removal
+        if (switchRailSystem != null) {
+            switchRailSystem.unregisterSwitchRail(pos);
+        }
+
+        // Handle detector rail removal
+        if (detectorRailSystem != null) {
+            detectorRailSystem.onDetectorRailRemoved(pos);
+        }
+
         // Handle lamp removal
         if (lampSystem != null && lampSystem.isLampAt(pos)) {
             lampSystem.unregisterLamp(pos);
@@ -484,7 +519,8 @@ public final class CircuitPlugin extends JavaPlugin {
             // }
 
             // Check if it's a wire block and determine its state
-            if (blockId.contains("Circuit_Wire") || blockId.contains("Circuit_Golden_Wire")) {
+            if (blockId.contains("Circuit_Wire") || blockId.contains("Circuit_Golden_Wire")
+                    || blockId.contains("Circuit_Wire_Block")) {
                 wirePositions.add(position);
 
                 // CRITICAL: Determine wire state from block ID
@@ -879,6 +915,18 @@ public final class CircuitPlugin extends JavaPlugin {
         return fanSystem;
     }
 
+    public PoweredRailSystem getPoweredRailSystem() {
+        return poweredRailSystem;
+    }
+
+    public SwitchRailSystem getSwitchRailSystem() {
+        return switchRailSystem;
+    }
+
+    public DetectorRailSystem getDetectorRailSystem() {
+        return detectorRailSystem;
+    }
+
     public static CircuitPlugin get() {
         return instance;
     }
@@ -1051,6 +1099,21 @@ public final class CircuitPlugin extends JavaPlugin {
             fanSystem.loadFans();
         }
 
+        // Load saved powered rail data
+        if (poweredRailSystem != null) {
+            poweredRailSystem.loadPoweredRails(getDataDirectory());
+        }
+
+        // Load saved switch rail data
+        if (switchRailSystem != null) {
+            switchRailSystem.loadSwitchRails(getDataDirectory());
+        }
+
+        // Load saved detector rail data
+        if (detectorRailSystem != null) {
+            detectorRailSystem.loadDetectorRails(getDataDirectory());
+        }
+
         // Load saved wire data
         loadWires();
 
@@ -1107,6 +1170,21 @@ public final class CircuitPlugin extends JavaPlugin {
         // Save fan data
         if (fanSystem != null) {
             fanSystem.saveFans();
+        }
+
+        // Save powered rail data
+        if (poweredRailSystem != null) {
+            poweredRailSystem.savePoweredRails(getDataDirectory());
+        }
+
+        // Save switch rail data
+        if (switchRailSystem != null) {
+            switchRailSystem.saveSwitchRails(getDataDirectory());
+        }
+
+        // Save detector rail data
+        if (detectorRailSystem != null) {
+            detectorRailSystem.saveDetectorRails(getDataDirectory());
         }
 
         // Save wire data

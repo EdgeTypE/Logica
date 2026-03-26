@@ -43,7 +43,20 @@
             }
         ],
         "Flags": {
-            "IsUsable": false
+            "IsUsable": true
+        },
+        "Interactions": {
+            "Use": {
+                "Interactions": [
+                    {
+                        "Type": "ChangeState",
+                        "Changes": {
+                            "Off": "On",
+                            "On": "Off"
+                        }
+                    }
+                ]
+            }
         },
         "Gathering": {
             "Soft": {}
